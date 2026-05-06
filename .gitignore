@@ -1,0 +1,6 @@
+# Firebase Configuration (Sensitive)
+js/firebase-config.js
+
+# OS files
+.DS_Store
+Thumbs.db
