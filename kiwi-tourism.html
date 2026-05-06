@@ -1,0 +1,2964 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiwi Tourism — كيوي للسياحة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════ THEME VARIABLES ═══════════ */
+:root {
+  --kiwi1:#4CAF50; --kiwi2:#8BC34A; --kiwi3:#2E7D32;
+  --kiwi4:#F9FBE7; --kiwi5:#CCFF90; --kiwi6:#1B5E20;
+  --gold:#D4A843; --coral:#FF6B6B; --teal:#0ABFBC;
+}
+[data-theme="dark"] {
+  --bg:#08080C; --bg2:#0D0D14; --bg3:#11111A; --bg4:#161620;
+  --text:#E8E8F5; --muted:#6A5A7A; --soft:#B5A5C8;
+  --border:rgba(157,78,221,0.15); --borderg:rgba(157,78,221,0.35);
+  --card:#0D0D14; --shadow:rgba(0,0,0,0.7);
+  --nav:rgba(8,8,12,0.93);
+  --primary: #9D4EDD; --primary-dark: #7B2CBF; --primary-grad: linear-gradient(135deg,#C77DFF,#9D4EDD);
+  --primary-rgb: 157,78,221;
+}
+[data-theme="light"] {
+  --bg:#F1F5F8; --bg2:#FFFFFF; --bg3:#E8EEF5; --bg4:#C8DCED;
+  --text:#1B242E; --muted:#5A6A7A; --soft:#2E455A;
+  --border:rgba(0,0,0,0.07); --borderg:rgba(33,150,243,0.3);
+  --card:#FFFFFF; --shadow:rgba(0,0,0,0.1);
+  --nav:rgba(241,245,248,0.95);
+  --primary: #2196F3; --primary-dark: #1976D2; --primary-grad: linear-gradient(135deg,#64B5F6,#1976D2);
+  --primary-rgb: 33,150,243;
+}
+[data-theme="night"] {
+  --bg:#020408; --bg2:#060D18; --bg3:#0A1628; --bg4:#0F1F38;
+  --text:#E0EEFF; --muted:#4A6A8A; --soft:#8AAAC8;
+  --border:rgba(10,191,188,0.1); --borderg:rgba(10,191,188,0.3);
+  --card:#060D18; --shadow:rgba(0,0,0,0.7);
+  --nav:rgba(2,4,8,0.93);
+  --primary: #0ABFBC; --primary-dark: #008B89; --primary-grad: linear-gradient(135deg,#4DD0E1,#008B89);
+  --primary-rgb: 10,191,188;
+}
+[data-theme="kiwi"] {
+  --bg:#0A1A0A; --bg2:#0F2210; --bg3:#142814; --bg4:#1A3018;
+  --text:#F0FFF0; --muted:#5A9A5A; --soft:#90C890;
+  --border:rgba(76,175,80,0.15); --borderg:rgba(var(--primary-rgb),0.4);
+  --card:#0F2210; --shadow:rgba(0,50,0,0.6);
+  --nav:rgba(10,26,10,0.95); 
+  --primary: var(--primary); --primary-dark: var(--primary-dark); --primary-grad: linear-gradient(135deg,var(--primary),var(--primary-dark));
+  --primary-rgb: 139,195,74;
+}
+
+/* ═══════════ BASE ═══════════ */
+*{margin:0;padding:0;box-sizing:border-box;transition:background-color .25s,color .25s,border-color .25s}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh}
+[data-lang="en"],[data-lang="de"],[data-lang="es"],[data-lang="it"],[data-lang="fr"]{font-family:'DM Sans',sans-serif;direction:ltr}
+[data-lang="ar"]{direction:rtl}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}
+a{text-decoration:none;color:inherit}
+
+/* ═══════════ KIWI PATTERN BG ═══════════ */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.03;
+  background-image:radial-gradient(circle,var(--kiwi1) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+
+/* ═══════════ NAV ═══════════ */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:var(--nav);backdrop-filter:blur(24px);border-bottom:1px solid var(--borderg);height:66px;display:flex;align-items:center;padding:0 2rem;gap:1.2rem}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:4px;background:linear-gradient(135deg,var(--primary),var(--kiwi1),var(--kiwi5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer;margin-inline-end:auto}
+.nav-links{display:flex;gap:1.2rem;list-style:none}
+.nav-links a{color:var(--muted);font-size:.88rem;font-weight:600;padding:.3rem .6rem;border-radius:8px;transition:all .2s}
+.nav-links a:hover{color:var(--primary);background:rgba(var(--primary-rgb),.1)}
+.nav-right{display:flex;gap:.6rem;align-items:center}
+.coin-nav{display:flex;align-items:center;gap:.4rem;background:rgba(var(--primary-rgb),.1);border:1px solid var(--borderg);padding:.3rem .9rem;border-radius:50px;cursor:pointer;transition:all .25s}
+.coin-nav:hover{background:rgba(var(--primary-rgb),.2)}
+.coin-nav span{color:var(--primary);font-weight:800;font-size:.85rem}
+.nav-btn{width:34px;height:34px;border-radius:10px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.95rem;transition:all .25s;color:var(--muted)}
+.nav-btn:hover{border-color:var(--primary);color:var(--primary)}
+.btn-signin{display:flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--primary-dark),var(--kiwi1));color:#fff;border:none;padding:.45rem 1.1rem;border-radius:10px;cursor:pointer;font-size:.82rem;font-weight:700;font-family:inherit;transition:all .25s}
+.btn-signin:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(76,175,80,.3)}
+
+/* ═══════════ HERO ═══════════ */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:66px;
+  background:radial-gradient(ellipse 80% 60% at 20% 50%,rgba(76,175,80,.08),transparent),
+             radial-gradient(ellipse 50% 70% at 80% 30%,rgba(var(--primary-rgb),.06),transparent),var(--bg)}
+/* Kiwi slice decorations */
+.kiwi-deco{position:absolute;pointer-events:none;opacity:.06;border-radius:50%;border:2px solid var(--primary)}
+.kd1{width:500px;height:500px;top:-100px;right:-150px;animation:spin1 30s linear infinite}
+.kd2{width:300px;height:300px;bottom:5%;left:-80px;animation:spin1 20s linear infinite reverse}
+.kd3{width:700px;height:700px;top:50%;left:50%;transform:translate(-50%,-50%);animation:spin1 50s linear infinite;border-style:dashed}
+@keyframes spin1{to{transform:rotate(360deg)}}
+.kd3{transform-origin:center center}
+.hero-content{text-align:center;z-index:2;padding:2rem;max-width:800px}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(var(--primary-rgb),.1);border:1px solid rgba(var(--primary-rgb),.3);padding:.4rem 1.2rem;border-radius:50px;margin-bottom:2rem;font-size:.82rem;color:var(--primary);animation:fadeUp .8s ease both}
+.hero h1{font-size:clamp(2.8rem,8vw,6rem);font-weight:900;line-height:1.05;margin-bottom:1.5rem;background:linear-gradient(135deg,var(--text) 0%,var(--primary) 40%,var(--kiwi5) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeUp .9s .1s ease both}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:520px;margin:0 auto 2.5rem;line-height:1.9;animation:fadeUp 1s .2s ease both}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s .3s ease both}
+.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:4rem;flex-wrap:wrap;animation:fadeUp 1s .4s ease both}
+.stat-num{font-size:2.2rem;font-weight:900;color:var(--primary);font-family:'Bebas Neue',sans-serif;letter-spacing:1px}
+.stat-lbl{font-size:.75rem;color:var(--muted);margin-top:.2rem}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════ BUTTONS ═══════════ */
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none;padding:.85rem 2.2rem;border-radius:14px;font-family:inherit;font-weight:800;font-size:.95rem;cursor:pointer;transition:all .3s;box-shadow:0 4px 24px rgba(76,175,80,.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(76,175,80,.45)}
+.btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border);padding:.85rem 2.2rem;border-radius:14px;font-family:inherit;font-weight:600;font-size:.95rem;cursor:pointer;transition:all .3s}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary);background:rgba(var(--primary-rgb),.05)}
+.btn-sm{padding:.45rem 1.1rem;font-size:.82rem;border-radius:10px}
+
+/* ═══════════ SEARCH ═══════════ */
+.search-section{padding:0 2rem;margin-top:-28px;position:relative;z-index:10}
+.search-box{max-width:920px;margin:0 auto;background:var(--card);border:1px solid var(--borderg);border-radius:22px;padding:1.5rem 2rem;box-shadow:0 24px 64px var(--shadow)}
+.search-tabs{display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.stab{padding:.4rem 1rem;border-radius:9px;cursor:pointer;font-size:.82rem;font-family:inherit;transition:all .25s;border:1px solid transparent;color:var(--muted)}
+.stab.active{background:rgba(var(--primary-rgb),.14);border-color:var(--borderg);color:var(--primary)}
+.search-fields{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:1rem;align-items:end}
+.field-g label{display:block;font-size:.73rem;color:var(--muted);margin-bottom:.4rem;font-weight:600}
+.field-g input,.field-g select{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:.68rem 1rem;color:var(--text);font-family:inherit;font-size:.88rem;outline:none;transition:border-color .25s}
+.field-g input:focus,.field-g select:focus{border-color:var(--primary)}
+.field-g select option{background:var(--bg2)}
+
+/* ═══════════ SECTIONS ═══════════ */
+section{padding:5rem 2rem;position:relative;z-index:1}
+.sec-hd{text-align:center;margin-bottom:2.8rem}
+.sec-tag{display:inline-block;background:rgba(var(--primary-rgb),.1);border:1px solid var(--borderg);color:var(--primary);padding:.3rem 1rem;border-radius:50px;font-size:.78rem;margin-bottom:.8rem}
+.sec-hd h2{font-size:2.1rem;font-weight:800;margin-bottom:.6rem}
+.sec-hd p{color:var(--muted);font-size:.95rem}
+
+/* ═══════════ TRIPS ═══════════ */
+.trips-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.trip-card{background:var(--card);border-radius:22px;overflow:hidden;border:1px solid var(--border);transition:all .4s cubic-bezier(.16,1,.3,1);cursor:pointer}
+.trip-card:hover{transform:translateY(-10px) scale(1.02);border-color:var(--primary);box-shadow:0 24px 60px var(--shadow), 0 0 20px rgba(var(--primary-rgb),.2)}
+.trip-img{height:200px;position:relative;overflow:hidden}
+.trip-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.trip-card:hover .trip-img img{transform:scale(1.08)}
+.trip-img-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4.5rem;opacity:.3}
+.trip-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,8,.9) 0%,transparent 55%)}
+.trip-badge{position:absolute;top:12px;inset-inline-end:12px;z-index:2;background:var(--coral);color:#fff;padding:.28rem .75rem;border-radius:50px;font-size:.72rem;font-weight:700}
+.trip-coins{position:absolute;top:12px;inset-inline-start:12px;z-index:2;background:rgba(var(--primary-rgb),.92);color:#0A1A0A;padding:.28rem .75rem;border-radius:50px;font-size:.72rem;font-weight:700}
+.trip-body{padding:1.3rem}
+.trip-loc{font-size:.73rem;color:var(--primary);margin-bottom:.35rem}
+.trip-name{font-size:1.05rem;font-weight:700;margin-bottom:.7rem}
+.trip-meta{display:flex;gap:.8rem;font-size:.78rem;color:var(--muted);margin-bottom:.9rem;flex-wrap:wrap}
+.trip-foot{display:flex;justify-content:space-between;align-items:center}
+.trip-price .old{text-decoration:line-through;color:var(--muted);font-size:.75rem}
+.trip-price .new{color:var(--primary);font-size:1.25rem;font-weight:900}
+.loading-card{background:var(--bg3);border-radius:22px;height:300px;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ═══════════ LEADERBOARD ═══════════ */
+.leaderboard-section{background:linear-gradient(135deg,var(--bg2),var(--bg));border-top:1px solid var(--borderg);border-bottom:1px solid var(--borderg)}
+.lb-grid{max-width:800px;margin:0 auto}
+.lb-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.4rem;background:var(--card);border-radius:16px;margin-bottom:.8rem;border:1px solid var(--border);transition:all .25s}
+.lb-item:hover{border-color:var(--borderg);transform:translateX(-4px)}
+[data-lang="en"] .lb-item:hover{transform:translateX(4px)}
+.lb-rank{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;min-width:40px;text-align:center}
+.lb-rank.r1{color:gold} .lb-rank.r2{color:silver} .lb-rank.r3{color:#CD7F32}
+.lb-av{width:42px;height:42px;border-radius:50%;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;overflow:hidden;border:2px solid var(--borderg)}
+.lb-av img{width:100%;height:100%;object-fit:cover}
+.lb-info{flex:1}
+.lb-name{font-weight:700;font-size:.9rem}
+.lb-city{font-size:.75rem;color:var(--muted)}
+.lb-coins{color:var(--primary);font-weight:900;font-size:1rem}
+
+/* ═══════════ COINS SECTION ═══════════ */
+.coins-section{background:linear-gradient(135deg,var(--bg2),var(--bg));border-top:1px solid var(--borderg);border-bottom:1px solid var(--borderg)}
+.coins-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.kiwi-coin{width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,var(--kiwi5),var(--primary),var(--primary-dark));display:flex;align-items:center;justify-content:center;margin:auto;position:relative;box-shadow:0 0 60px rgba(var(--primary-rgb),.4),0 20px 40px rgba(0,0,0,.3);animation:coinPulse 3s ease-in-out infinite}
+.kiwi-coin-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:#0A1A0A;letter-spacing:2px}
+@keyframes coinPulse{0%,100%{box-shadow:0 0 40px rgba(var(--primary-rgb),.25),0 20px 40px rgba(0,0,0,.3)}50%{box-shadow:0 0 80px rgba(var(--primary-rgb),.55),0 20px 40px rgba(0,0,0,.3)}}
+.coin-step{display:flex;gap:.9rem;align-items:flex-start;background:var(--bg3);border:1px solid var(--border);padding:.9rem 1.1rem;border-radius:14px;margin-bottom:.7rem;transition:all .25s}
+.coin-step:hover{border-color:var(--borderg);background:rgba(var(--primary-rgb),.04)}
+.step-ic{width:38px;height:38px;border-radius:10px;flex-shrink:0;background:rgba(var(--primary-rgb),.12);border:1px solid var(--borderg);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+
+/* ═══════════ TIERS ═══════════ */
+.tiers-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.tier-card{background:var(--card);border-radius:22px;padding:1.8rem 1.4rem;text-align:center;border:1px solid var(--border);position:relative;transition:all .3s}
+.tier-card:hover{transform:translateY(-5px)}
+.tier-card.featured{border-color:var(--borderg);background:linear-gradient(135deg,rgba(var(--primary-rgb),.07),var(--card))}
+.tier-card.featured::before{content:'⭐ الأكثر شيوعاً';position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--primary);color:#0A1A0A;padding:.2rem 1rem;border-radius:50px;font-size:.72rem;font-weight:700;white-space:nowrap}
+.tier-disc{font-size:2.5rem;font-weight:900;background:linear-gradient(135deg,var(--primary),var(--kiwi5));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.tier-perks{list-style:none;text-align:right;margin-top:.8rem}
+.tier-perks li{font-size:.8rem;color:var(--muted);padding:.35rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem}
+.tier-perks li::before{content:'✓';color:var(--primary);font-weight:700}
+
+/* ═══════════ CONTACT ═══════════ */
+.contact-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--bg3);border:1px solid var(--border);border-radius:14px;margin-bottom:.8rem;cursor:pointer;transition:all .25s;color:var(--text)}
+.contact-link:hover{border-color:var(--borderg);background:rgba(var(--primary-rgb),.05);transform:translateX(-4px)}
+[data-lang="en"] .contact-link:hover{transform:translateX(4px)}
+.contact-form-box{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:2rem}
+.team-member{display:flex;align-items:center;gap:.9rem;background:rgba(var(--primary-rgb),.08);border:1px solid var(--borderg);border-radius:14px;padding:.9rem 1.1rem;margin-bottom:.8rem;cursor:pointer;transition:all .25s}
+.team-member:hover{background:rgba(var(--primary-rgb),.14)}
+.member-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--primary-dark),var(--primary));display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;border:2px solid var(--primary)}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2rem 1.5rem}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:4px;background:linear-gradient(135deg,var(--primary),var(--kiwi5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.7rem}
+footer h4{font-size:.88rem;font-weight:700;margin-bottom:.9rem}
+footer ul{list-style:none}
+footer ul li{margin-bottom:.5rem}
+footer ul li a{color:var(--muted);font-size:.82rem;transition:color .25s}
+footer ul li a:hover{color:var(--primary)}
+.footer-bot{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--muted)}
+/* Admin entry button in footer - subtle */
+.admin-entry-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:.3rem .8rem;border-radius:8px;font-size:.72rem;cursor:pointer;font-family:inherit;transition:all .25s;opacity:.4}
+.admin-entry-btn:hover{opacity:1;border-color:var(--primary);color:var(--primary)}
+
+/* ═══════════ MODALS ═══════════ */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:1rem}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--card);border-radius:24px;border:1px solid var(--borderg);width:100%;max-width:560px;max-height:90vh;overflow-y:auto;transform:scale(.9);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.overlay.open .modal{transform:scale(1)}
+.modal.wide{max-width:700px}
+.modal-hd{padding:1.3rem 1.8rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--card);z-index:5;backdrop-filter:blur(10px)}
+.modal-hd h3{font-size:1rem;font-weight:800}
+.close-btn{background:var(--bg3);border:1px solid var(--border);color:var(--muted);width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:1rem;transition:all .25s}
+.close-btn:hover{border-color:var(--coral);color:var(--coral)}
+.modal-body{padding:1.8rem}
+
+/* ═══════════ FORMS ═══════════ */
+.form-g{margin-bottom:1rem}
+.form-g label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:.35rem;font-weight:600}
+.form-g input,.form-g select,.form-g textarea{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:.68rem 1rem;color:var(--text);font-family:inherit;font-size:.88rem;outline:none;transition:border-color .25s}
+.form-g input:focus,.form-g select:focus,.form-g textarea:focus{border-color:var(--primary)}
+.form-g textarea{resize:vertical;min-height:80px}
+.form-g select option{background:var(--bg2)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.full{grid-column:1/-1}
+.btn-submit{width:100%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none;padding:.95rem;border-radius:12px;font-family:inherit;font-weight:800;font-size:.95rem;cursor:pointer;transition:all .3s;margin-top:.5rem}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(76,175,80,.4)}
+.btn-danger{background:rgba(255,107,107,.15);color:var(--coral);border:1px solid rgba(255,107,107,.3);box-shadow:none}
+.btn-danger:hover{background:rgba(255,107,107,.25)}
+
+/* ═══════════ OTP INPUTS ═══════════ */
+.otp-wrap{display:flex;gap:.6rem;justify-content:center;margin:1.2rem 0}
+.otp-in{width:50px;height:58px;background:var(--bg3);border:2px solid var(--border);border-radius:12px;text-align:center;font-size:1.5rem;font-weight:800;color:var(--primary);font-family:'Bebas Neue',sans-serif;outline:none;transition:border-color .25s}
+.otp-in:focus{border-color:var(--primary)}
+.phone-input-wrap{display:flex;gap:.6rem}
+.phone-code{background:var(--bg3);border:1px solid var(--border);border-radius:11px;padding:.68rem .8rem;color:var(--text);font-size:.88rem;width:80px;outline:none;font-family:inherit}
+
+/* ═══════════ PROFILE ═══════════ */
+.profile-av-wrap{position:relative;display:inline-block}
+.profile-av{width:90px;height:90px;border-radius:50%;border:3px solid var(--primary);background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:2.5rem;overflow:hidden;cursor:pointer}
+.profile-av img{width:100%;height:100%;object-fit:cover}
+.av-edit-btn{position:absolute;bottom:2px;inset-inline-end:2px;width:28px;height:28px;border-radius:50%;background:var(--primary);border:2px solid var(--card);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem}
+.profile-tabs{display:flex;gap:.4rem;margin-bottom:1.3rem;background:var(--bg3);padding:.25rem;border-radius:10px}
+.ptab{flex:1;text-align:center;padding:.45rem;border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:600;color:var(--muted);transition:all .25s;border:none;background:transparent;font-family:inherit}
+.ptab.active{background:var(--card);color:var(--primary)}
+.ppanel{display:none} .ppanel.active{display:block}
+.p-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:1.2rem 0}
+.p-stat{background:var(--bg3);border-radius:12px;padding:.8rem;text-align:center}
+.p-stat-n{font-size:1.3rem;font-weight:900;color:var(--primary)}
+.tier-badge-sm{display:inline-flex;align-items:center;gap:.4rem;background:rgba(var(--primary-rgb),.1);border:1px solid var(--borderg);padding:.25rem .75rem;border-radius:50px;font-size:.78rem;color:var(--primary)}
+
+/* ═══════════ SETTINGS ═══════════ */
+.theme-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}
+.theme-opt{padding:.7rem .5rem;border-radius:12px;border:2px solid var(--border);cursor:pointer;text-align:center;transition:all .25s;font-size:.78rem;font-weight:600;font-family:inherit;background:transparent;color:var(--text)}
+.theme-opt.active,.theme-opt:hover{border-color:var(--primary);color:var(--primary);background:rgba(var(--primary-rgb),.08)}
+.lang-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.lang-opt{padding:.6rem .5rem;border-radius:12px;border:2px solid var(--border);cursor:pointer;text-align:center;transition:all .25s;font-size:.8rem;font-weight:600;font-family:inherit;background:transparent;color:var(--text)}
+.lang-opt.active,.lang-opt:hover{border-color:var(--primary);color:var(--primary);background:rgba(var(--primary-rgb),.08)}
+.lang-flag{font-size:1.2rem;display:block;margin-bottom:.25rem}
+.sw-row{display:flex;justify-content:space-between;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--border)}
+.sw-row:last-child{border-bottom:none}
+.toggle{width:42px;height:23px;background:var(--bg3);border-radius:50px;cursor:pointer;position:relative;transition:background .25s;border:1px solid var(--border);flex-shrink:0}
+.toggle.on{background:var(--primary);border-color:var(--primary)}
+.toggle::after{content:'';position:absolute;top:2px;right:2px;width:17px;height:17px;background:#fff;border-radius:50%;transition:transform .25s}
+.toggle.on::after{transform:translateX(-19px)}
+
+/* ═══════════ BOOKING ═══════════ */
+.coins-toggle-box{background:rgba(var(--primary-rgb),.07);border:1px solid var(--borderg);border-radius:14px;padding:.9rem 1.1rem;margin-bottom:1.2rem}
+.summary-box{background:var(--bg3);border-radius:14px;padding:.9rem 1.1rem;margin-bottom:1.2rem;border:1px solid var(--border)}
+.sum-row{display:flex;justify-content:space-between;padding:.35rem 0;font-size:.83rem;border-bottom:1px solid var(--border)}
+.sum-row:last-child{border-bottom:none;font-weight:800;font-size:.95rem;color:var(--primary)}
+.sum-green{color:var(--primary)}
+
+/* ═══════════ TRIP DETAIL ═══════════ */
+.trip-detail-hero{height:230px;position:relative;overflow:hidden}
+.trip-detail-hero img{width:100%;height:100%;object-fit:cover}
+.trip-detail-hero-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;opacity:.5}
+.trip-detail-hero .overlay-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--card) 10%,transparent 65%)}
+.back-btn-detail{position:absolute;top:12px;inset-inline-start:14px;z-index:3;background:rgba(0,0,0,.45);border:none;color:#fff;padding:.4rem .9rem;border-radius:10px;cursor:pointer;font-family:inherit;font-size:.82rem;backdrop-filter:blur(8px)}
+.detail-tabs{display:flex;gap:.4rem;margin-bottom:1.3rem;background:var(--bg3);padding:.3rem;border-radius:12px}
+.dtab{flex:1;padding:.5rem;border-radius:9px;cursor:pointer;font-size:.82rem;font-weight:600;color:var(--muted);transition:all .25s;border:none;background:transparent;font-family:inherit}
+.dtab.active{background:var(--card);color:var(--primary)}
+.dpanel{display:none} .dpanel.active{display:block}
+.tl-item{display:flex;gap:1rem;margin-bottom:1.2rem}
+.tl-time{min-width:56px;font-size:.8rem;font-weight:700;color:var(--primary);text-align:center;padding-top:.2rem}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);flex-shrink:0;margin-top:.4rem;box-shadow:0 0 0 3px rgba(var(--primary-rgb),.2)}
+.includes-g{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.inc-item{display:flex;align-items:center;gap:.5rem;font-size:.82rem;padding:.6rem .8rem;border-radius:10px}
+.inc-yes{background:rgba(var(--primary-rgb),.07);border:1px solid rgba(var(--primary-rgb),.2)}
+.inc-no{background:rgba(255,107,107,.07);border:1px solid rgba(255,107,107,.2)}
+
+/* ═══════════ SUCCESS ═══════════ */
+.success-modal{text-align:center;padding:2rem}
+.success-icon{font-size:3.5rem;margin-bottom:.8rem;animation:bounceIn .6s cubic-bezier(.16,1,.3,1)}
+@keyframes bounceIn{from{transform:scale(0)}to{transform:scale(1)}}
+.coins-earned-box{background:rgba(var(--primary-rgb),.1);border:1px solid var(--borderg);border-radius:14px;padding:.9rem 1.5rem;margin:.9rem auto;display:inline-block}
+.coins-earned-box .amount{font-size:2rem;font-weight:900;color:var(--primary)}
+
+/* ═══════════ ADMIN ═══════════ */
+#adminApp{display:none}
+.admin-layout{display:flex;min-height:100vh}
+.sidebar{width:240px;min-height:100vh;background:var(--bg2);border-inline-end:1px solid var(--border);display:flex;flex-direction:column;position:fixed;inset-inline-start:0;top:0;z-index:900}
+.sidebar-logo{padding:1.3rem 1.5rem;border-bottom:1px solid var(--border)}
+.sidebar-logo .logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:4px;background:linear-gradient(135deg,var(--primary),var(--kiwi5));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sidebar-user{display:flex;align-items:center;gap:.8rem;padding:1rem 1.5rem;border-bottom:1px solid var(--border)}
+.admin-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--primary-dark),var(--primary));display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;border:2px solid var(--primary)}
+.sidebar-nav{flex:1;padding:1rem 0;overflow-y:auto}
+.nav-sec-t{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;padding:.5rem 1.5rem;margin-top:.5rem}
+.nav-item{display:flex;align-items:center;gap:.8rem;padding:.65rem 1.5rem;cursor:pointer;transition:all .25s;color:var(--muted);font-size:.88rem;font-weight:600;position:relative}
+.nav-item:hover{color:var(--text);background:rgba(255,255,255,.02)}
+.nav-item.active{color:var(--primary);background:rgba(var(--primary-rgb),.08)}
+.nav-item.active::before{content:'';position:absolute;inset-inline-end:0;top:20%;height:60%;width:3px;background:var(--primary);border-radius:3px 0 0 3px}
+.nav-icon{font-size:1.1rem;width:22px;text-align:center}
+.nav-badge2{background:var(--coral);color:#fff;font-size:.65rem;font-weight:700;padding:.1rem .45rem;border-radius:50px;margin-inline-start:auto}
+.sidebar-foot{padding:1rem 1.5rem;border-top:1px solid var(--border)}
+.admin-main{margin-inline-start:240px;flex:1;min-height:100vh;background:var(--bg)}
+.admin-topbar{position:sticky;top:0;z-index:90;background:rgba(var(--bg),0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 1.8rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+.admin-page{display:none;padding:1.8rem;animation:fadeUp .35s ease both}
+.admin-page.active{display:block}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-bottom:1.8rem}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:1.3rem;position:relative;overflow:hidden;transition:all .25s}
+.stat-card:hover{border-color:var(--borderg);transform:translateY(-3px)}
+.stat-val{font-size:2rem;font-weight:900;line-height:1;margin-top:.5rem;color:var(--primary)}
+.stat-lbl2{font-size:.78rem;color:var(--muted);margin-top:.4rem}
+.tbl-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;overflow:hidden;margin-bottom:1.8rem}
+.tbl-hd{padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:.8rem}
+.tbl-acts{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.search-inp{background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:.42rem .85rem;color:var(--text);font-family:inherit;font-size:.82rem;outline:none;width:175px;transition:border-color .25s}
+.search-inp:focus{border-color:var(--primary)}
+.btn-add{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border:none;padding:.42rem 1.1rem;border-radius:9px;font-family:inherit;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:.4rem}
+.btn-add:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(76,175,80,.3)}
+.btn-filt{background:var(--bg3);border:1px solid var(--border);color:var(--muted);padding:.42rem .85rem;border-radius:9px;font-family:inherit;font-size:.82rem;cursor:pointer;transition:all .25s}
+.btn-filt:hover{border-color:var(--primary);color:var(--primary)}
+table{width:100%;border-collapse:collapse}
+th{padding:.75rem 1.2rem;text-align:right;font-size:.72rem;color:var(--muted);font-weight:600;background:var(--bg3);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+[data-lang="en"] th{text-align:left}
+td{padding:.82rem 1.2rem;font-size:.83rem;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.012)}
+.sb{display:inline-flex;align-items:center;gap:.3rem;padding:.25rem .7rem;border-radius:50px;font-size:.72rem;font-weight:700}
+.sb-ok{background:rgba(var(--primary-rgb),.1);color:var(--primary);border:1px solid rgba(var(--primary-rgb),.2)}
+.sb-pend{background:rgba(255,107,107,.1);color:var(--coral);border:1px solid rgba(255,107,107,.2)}
+.sb-off{background:rgba(107,122,153,.1);color:var(--muted);border:1px solid rgba(107,122,153,.2)}
+.act-btn{width:29px;height:29px;border-radius:7px;border:1px solid var(--border);background:var(--bg3);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.82rem;transition:all .25s;color:var(--muted)}
+.act-btn:hover{border-color:var(--primary);color:var(--primary)}
+.act-btn.del:hover{border-color:var(--coral);color:var(--coral)}
+.act-btns{display:flex;gap:.35rem}
+.trip-thumb{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;overflow:hidden}
+.trip-thumb img{width:100%;height:100%;object-fit:cover}
+.color-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem}
+.color-opt{height:34px;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.color-opt.selected{border-color:#fff;transform:scale(1.1)}
+.img-upload-area{border:2px dashed var(--borderg);border-radius:14px;padding:2rem;text-align:center;cursor:pointer;transition:all .25s;background:var(--bg3)}
+.img-upload-area:hover{border-color:var(--primary);background:rgba(var(--primary-rgb),.05)}
+.img-preview-show{width:100%;max-height:150px;object-fit:cover;border-radius:10px;margin-top:1rem;display:none}
+.coin-give-wrap{display:flex;align-items:center;gap:.5rem}
+.coin-give-wrap input{width:80px;text-align:center;padding:.4rem .6rem;border-radius:8px}
+.mini-bars{display:flex;align-items:flex-end;gap:.4rem;height:90px;margin-top:.5rem}
+.mbar{flex:1;background:rgba(var(--primary-rgb),.15);border-radius:4px 4px 0 0;transition:all .5s;cursor:pointer}
+.mbar:hover,.mbar.hi{background:linear-gradient(to top,var(--primary-dark),var(--primary))}
+.events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.2rem}
+.event-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.2rem;transition:all .25s}
+.event-card:hover{border-color:var(--borderg);transform:translateY(-3px)}
+/* Toast */
+.toast{position:fixed;bottom:2rem;inset-inline-start:2rem;background:var(--bg2);border:1px solid var(--borderg);border-radius:14px;padding:.9rem 1.4rem;display:flex;align-items:center;gap:.8rem;z-index:9999;transform:translateY(100px);transition:transform .4s cubic-bezier(.16,1,.3,1);box-shadow:0 20px 50px var(--shadow);max-width:320px}
+.toast.show{transform:translateY(0)}
+/* Spinner */
+.spinner{width:20px;height:20px;border:2px solid rgba(var(--primary-rgb),.3);border-top-color:var(--primary);border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* Responsive */
+
+/* ══════ MOBILE RESPONSIVE ══════ */
+@media(max-width:900px){
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .coins-grid{grid-template-columns:1fr}
+  .tiers-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  /* Nav */
+  .nav-links{display:none}
+  nav{padding:0 1rem;gap:.6rem}
+  .nav-logo{font-size:1.5rem}
+  .btn-signin span:last-child{display:none} /* hide text, show icon only */
+  
+  /* Hero */
+  .hero{padding-top:80px; padding-bottom: 2rem;}
+  .hero h1{font-size:2.3rem}
+  .hero p{font-size:1rem; margin-bottom: 1.5rem;}
+  .hero-stats{gap:1rem; flex-direction: row; justify-content: center;}
+  .stat-num{font-size:1.4rem}
+  .kiwi-deco{display:none}
+  
+  /* Search */
+  .search-section{padding:0 1rem; margin-top: -15px;}
+  .search-box{padding:1.2rem;border-radius:18px}
+  .search-fields{grid-template-columns:1fr;gap:.8rem}
+  .search-tabs{gap:.4rem; justify-content: center;}
+  .stab{font-size:.78rem;padding:.35rem .75rem}
+
+  /* Sections */
+  section{padding:3.5rem 1rem}
+  .sec-hd h2{font-size:1.8rem}
+  
+  /* Trips */
+  .trips-grid{grid-template-columns:1fr;gap:1.2rem}
+  
+  /* Coins */
+  .coins-grid{grid-template-columns:1fr;gap:2rem}
+  
+  /* Tiers */
+  .tiers-grid{grid-template-columns:1fr;gap:.8rem}
+  .tier-card.featured::before{font-size:.65rem}
+  
+  /* Contact */
+  .contact-grid{grid-template-columns:1fr;gap:1.5rem}
+  
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr;gap:1.5rem; text-align: center;}
+  .footer-bot{flex-direction:column;gap:.6rem;text-align:center}
+  
+  /* Forms */
+  .form-grid{grid-template-columns:1fr}
+  
+  /* Modals */
+  .modal{border-radius:20px 20px 0 0;position:fixed;bottom:0;left:0;right:0;max-width:100%;max-height:92vh}
+  .overlay{align-items:flex-end;padding:0}
+  .modal.wide{max-width:100%}
+  
+  /* Admin sidebar - hidden on mobile, toggle button shown */
+  .admin-layout{display:block}
+  .sidebar{
+    position:fixed;top:0;right:0;height:100vh;
+    transform:translateX(100%);z-index:1000;
+    box-shadow:-4px 0 30px rgba(0,0,0,.5);
+  }
+  [data-lang="ar"] .sidebar{transform:translateX(100%)}
+  [data-lang="en"] .sidebar,[data-lang="de"] .sidebar,
+  [data-lang="es"] .sidebar,[data-lang="it"] .sidebar,
+  [data-lang="fr"] .sidebar{transform:translateX(-100%);right:auto;left:0}
+  .sidebar.open{transform:translateX(0) !important}
+  .admin-main{margin-inline-end:0;margin-inline-start:0;width:100%}
+  .sidebar-toggle{display:flex !important}
+  .admin-topbar{padding:0 1rem}
+  .admin-page{padding:1rem}
+  .stat-grid{grid-template-columns:1fr 1fr;gap:.8rem}
+  .stat-val{font-size:1.5rem}
+  .events-grid{grid-template-columns:1fr}
+  
+  /* Leaderboard */
+  .lb-item{padding:.7rem 1rem;gap:.7rem}
+  .lb-rank{font-size:1.2rem;min-width:28px}
+  
+  /* OTP inputs */
+  .otp-in{width:42px;height:50px;font-size:1.3rem}
+  
+  /* Trip detail */
+  .trip-detail-hero{height:180px}
+  .includes-g{grid-template-columns:1fr}
+}
+@media(max-width:400px){
+  .hero h1{font-size:2rem}
+  .otp-in{width:36px;height:44px;font-size:1.1rem}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  nav{gap:.4rem}
+  .nav-right{gap:.3rem}
+  .nav-btn{width:30px;height:30px;font-size:.85rem}
+}
+</style>
+
+<script>
+// ══════════════════════════════════════
+//  KIWI — CRITICAL SYNC FUNCTIONS
+//  Must be NON-module so onclick= works
+// ══════════════════════════════════════
+
+// ── Translations ──
+const KIWI_T = {
+  ar: {
+    heroTag:'🥝 أكتر من 500 رحلة في انتظارك',
+    heroH1:'اكتشف العالم<br>واكسب معنا',
+    heroP:'احجز رحلتك، اكسب Kiwi كوينات، واستمتع بخصومات حصرية',
+    btnExplore:'🔍 استكشف الرحلات',
+    btnCoins:'🪙 إزاي الكوينات بتشتغل؟',
+    navTrips:'الرحلات', navLB:'لوحة الشرف', navCoins:'كوينات', navContact:'تواصل',
+    tripsTitle:'اختار رحلتك المفضلة',
+    tripsSub:'بيانات حقيقية من Firebase — أي رحلة يضيفها الأدمن تظهر هنا فوراً',
+    lbTitle:'أكثر المسافرين معنا', lbSub:'الأعضاء الأكثر نشاطاً وأكثر كوينات 🪙',
+    coinsTitle:'كل ما سافرت، كل ما كسبت',
+    coinsSub:'اكسب Kiwi كوينات على كل تعامل',
+    howEarn:'كيف تكسب؟',
+    cs1:'احجز رحلة', cs1d:'اكسب 10 كوين لكل 100 EGP',
+    cs2:'قيّم رحلتك', cs2d:'اكسب 50 كوين بعد كل تقييم',
+    cs3:'ادعو أصحابك', cs3d:'اكسب 200 كوين لكل دعوة',
+    cs4:'استخدم الكوينات', cs4d:'100 كوين = خصم 10 EGP',
+    tiersTitle:'تقدّم مع كل رحلة', tiersSub:'كل ما زادت كوينات كلما ارتقيت',
+    contactTitle:'نحن هنا لمساعدتك', contactSub:'فريق Kiwi جاهز يرد عليك في أي وقت',
+    formTitle:'ابعتلنا رسالة',
+    fName:'اسمك', fPhone:'رقم الموبايل', fMsg:'رسالتك', fSend:'📤 إرسال',
+    signin:'تسجيل الدخول', signout:'خروج',
+    days:'أيام', people:'أشخاص',
+    bookNow:'احجز', themeLabel:'الثيم', langLabel:'اللغة',
+    t1:'برونزي', t2:'فضي', t3:'ذهبي', disc:'خصم',
+    footDesc:'شركة سياحة متخصصة في تنظيم الرحلات الداخلية والخارجية.',
+  },
+  en: {
+    heroTag:'🥝 500+ trips waiting for you',
+    heroH1:'Discover the World<br>& Earn with Us',
+    heroP:'Book your trip, earn Kiwi coins, and enjoy exclusive discounts',
+    btnExplore:'🔍 Explore Trips',
+    btnCoins:'🪙 How do coins work?',
+    navTrips:'Trips', navLB:'Leaderboard', navCoins:'Coins', navContact:'Contact',
+    tripsTitle:'Choose Your Trip',
+    tripsSub:'Real-time Firebase data — any trip the admin adds appears instantly',
+    lbTitle:'Top Travelers', lbSub:'Most active members with most coins 🪙',
+    coinsTitle:'The More You Travel, The More You Earn',
+    coinsSub:'Earn Kiwi coins on every interaction',
+    howEarn:'How to earn?',
+    cs1:'Book a trip', cs1d:'Earn 10 coins per 100 EGP',
+    cs2:'Rate your trip', cs2d:'Earn 50 bonus coins per review',
+    cs3:'Invite friends', cs3d:'Earn 200 coins per referral',
+    cs4:'Use coins', cs4d:'100 coins = 10 EGP discount',
+    tiersTitle:'Level Up With Every Trip', tiersSub:'More coins = higher level = bigger discounts',
+    contactTitle:"We're Here to Help", contactSub:'Kiwi team is ready to respond anytime',
+    formTitle:'Send Us a Message',
+    fName:'Your Name', fPhone:'Phone Number', fMsg:'Your Message', fSend:'📤 Send',
+    signin:'Sign In', signout:'Sign Out',
+    days:'days', people:'people',
+    bookNow:'Book', themeLabel:'Theme', langLabel:'Language',
+    t1:'Bronze', t2:'Silver', t3:'Gold', disc:'discount',
+    footDesc:'Tourism company specializing in domestic and international trips.',
+  },
+  de: {
+    heroTag:'🥝 Über 500 Reisen warten auf Sie',
+    heroH1:'Entdecken Sie die Welt<br>& Verdienen Sie mit uns',
+    heroP:'Buchen Sie Ihre Reise, verdienen Sie Kiwi Coins',
+    btnExplore:'🔍 Reisen entdecken',
+    btnCoins:'🪙 Wie funktionieren Coins?',
+    navTrips:'Reisen', navLB:'Bestenliste', navCoins:'Coins', navContact:'Kontakt',
+    tripsTitle:'Wählen Sie Ihre Reise',
+    tripsSub:'Echtzeit-Firebase-Daten',
+    lbTitle:'Top-Reisende', lbSub:'Aktivste Mitglieder mit meisten Coins 🪙',
+    coinsTitle:'Mehr Reisen, Mehr Verdienen',
+    coinsSub:'Verdienen Sie Kiwi Coins bei jeder Interaktion',
+    howEarn:'Wie verdienen?',
+    cs1:'Reise buchen', cs1d:'10 Coins pro 100 EGP',
+    cs2:'Reise bewerten', cs2d:'50 Bonus-Coins pro Bewertung',
+    cs3:'Freunde einladen', cs3d:'200 Coins pro Empfehlung',
+    cs4:'Coins einlösen', cs4d:'100 Coins = 10 EGP Rabatt',
+    tiersTitle:'Mit jeder Reise aufsteigen', tiersSub:'Mehr Coins = höhere Stufe',
+    contactTitle:'Wir sind für Sie da', contactSub:'Kiwi Team antwortet jederzeit',
+    formTitle:'Schreiben Sie uns',
+    fName:'Ihr Name', fPhone:'Telefon', fMsg:'Ihre Nachricht', fSend:'📤 Senden',
+    signin:'Anmelden', signout:'Abmelden',
+    days:'Tage', people:'Personen',
+    bookNow:'Buchen', themeLabel:'Design', langLabel:'Sprache',
+    t1:'Bronze', t2:'Silber', t3:'Gold', disc:'Rabatt',
+    footDesc:'Reiseunternehmen für In- und Auslandsreisen.',
+  },
+  es: {
+    heroTag:'🥝 Más de 500 viajes te esperan',
+    heroH1:'Descubre el Mundo<br>& Gana con Nosotros',
+    heroP:'Reserva tu viaje, gana Kiwi coins y disfruta descuentos exclusivos',
+    btnExplore:'🔍 Explorar viajes',
+    btnCoins:'🪙 ¿Cómo funcionan las monedas?',
+    navTrips:'Viajes', navLB:'Clasificación', navCoins:'Monedas', navContact:'Contacto',
+    tripsTitle:'Elige tu Viaje',
+    tripsSub:'Datos en tiempo real de Firebase',
+    lbTitle:'Mejores Viajeros', lbSub:'Miembros más activos con más monedas 🪙',
+    coinsTitle:'Más Viajas, Más Ganas',
+    coinsSub:'Gana Kiwi coins en cada interacción',
+    howEarn:'¿Cómo ganar?',
+    cs1:'Reserva un viaje', cs1d:'10 monedas por 100 EGP',
+    cs2:'Valora tu viaje', cs2d:'50 monedas extra por reseña',
+    cs3:'Invita amigos', cs3d:'200 monedas por referido',
+    cs4:'Usa monedas', cs4d:'100 monedas = 10 EGP de descuento',
+    tiersTitle:'Sube de nivel con cada viaje', tiersSub:'Más monedas = nivel más alto',
+    contactTitle:'Estamos Aquí para Ayudarte', contactSub:'El equipo Kiwi está listo',
+    formTitle:'Envíanos un Mensaje',
+    fName:'Tu Nombre', fPhone:'Teléfono', fMsg:'Tu Mensaje', fSend:'📤 Enviar',
+    signin:'Iniciar sesión', signout:'Cerrar sesión',
+    days:'días', people:'personas',
+    bookNow:'Reservar', themeLabel:'Tema', langLabel:'Idioma',
+    t1:'Bronce', t2:'Plata', t3:'Oro', disc:'descuento',
+    footDesc:'Empresa de turismo para viajes nacionales e internacionales.',
+  },
+  it: {
+    heroTag:'🥝 Oltre 500 viaggi ti aspettano',
+    heroH1:'Scopri il Mondo<br>& Guadagna con Noi',
+    heroP:'Prenota il tuo viaggio, guadagna Kiwi coins',
+    btnExplore:'🔍 Esplora viaggi',
+    btnCoins:'🪙 Come funzionano le monete?',
+    navTrips:'Viaggi', navLB:'Classifica', navCoins:'Monete', navContact:'Contatti',
+    tripsTitle:'Scegli il tuo Viaggio',
+    tripsSub:'Dati in tempo reale da Firebase',
+    lbTitle:'Migliori Viaggiatori', lbSub:'Membri più attivi con più monete 🪙',
+    coinsTitle:'Più Viaggi, Più Guadagni',
+    coinsSub:'Guadagna Kiwi coins su ogni interazione',
+    howEarn:'Come guadagnare?',
+    cs1:'Prenota un viaggio', cs1d:'10 monete per 100 EGP',
+    cs2:'Valuta il viaggio', cs2d:'50 monete extra per recensione',
+    cs3:'Invita amici', cs3d:'200 monete per referral',
+    cs4:'Usa le monete', cs4d:'100 monete = 10 EGP di sconto',
+    tiersTitle:'Sali di livello con ogni viaggio', tiersSub:'Più monete = livello più alto',
+    contactTitle:'Siamo Qui per Aiutarti', contactSub:'Il team Kiwi è pronto',
+    formTitle:'Mandaci un Messaggio',
+    fName:'Il tuo Nome', fPhone:'Telefono', fMsg:'Il tuo Messaggio', fSend:'📤 Invia',
+    signin:'Accedi', signout:'Esci',
+    days:'giorni', people:'persone',
+    bookNow:'Prenota', themeLabel:'Tema', langLabel:'Lingua',
+    t1:'Bronzo', t2:'Argento', t3:'Oro', disc:'sconto',
+    footDesc:'Agenzia turistica per viaggi nazionali e internazionali.',
+  },
+  fr: {
+    heroTag:'🥝 Plus de 500 voyages vous attendent',
+    heroH1:'Découvrez le Monde<br>& Gagnez avec Nous',
+    heroP:'Réservez votre voyage, gagnez des Kiwi coins',
+    btnExplore:'🔍 Explorer les voyages',
+    btnCoins:'🪙 Comment fonctionnent les coins?',
+    navTrips:'Voyages', navLB:'Classement', navCoins:'Coins', navContact:'Contact',
+    tripsTitle:'Choisissez votre Voyage',
+    tripsSub:'Données en temps réel depuis Firebase',
+    lbTitle:'Meilleurs Voyageurs', lbSub:'Membres les plus actifs avec plus de coins 🪙',
+    coinsTitle:'Plus vous voyagez, plus vous gagnez',
+    coinsSub:'Gagnez des Kiwi coins sur chaque interaction',
+    howEarn:'Comment gagner?',
+    cs1:'Réserver un voyage', cs1d:'10 coins par 100 EGP',
+    cs2:'Évaluer votre voyage', cs2d:'50 coins bonus par avis',
+    cs3:'Inviter des amis', cs3d:'200 coins par parrainage',
+    cs4:'Utiliser les coins', cs4d:'100 coins = 10 EGP de réduction',
+    tiersTitle:'Progressez à chaque voyage', tiersSub:'Plus de coins = niveau plus élevé',
+    contactTitle:'Nous Sommes Là pour Vous Aider', contactSub:"L'équipe Kiwi est prête",
+    formTitle:'Envoyez-nous un Message',
+    fName:'Votre Nom', fPhone:'Téléphone', fMsg:'Votre Message', fSend:'📤 Envoyer',
+    signin:'Se connecter', signout:'Se déconnecter',
+    days:'jours', people:'personnes',
+    bookNow:'Réserver', themeLabel:'Thème', langLabel:'Langue',
+    t1:'Bronze', t2:'Argent', t3:'Or', disc:'réduction',
+    footDesc:'Agence de tourisme pour voyages nationaux et internationaux.',
+  },
+};
+
+let _currentLang = localStorage.getItem('kiwi_lang') || 'ar';
+let _currentTheme = localStorage.getItem('kiwi_theme') || 'kiwi';
+
+// Apply theme immediately (no flash)
+document.documentElement.setAttribute('data-theme', _currentTheme);
+document.documentElement.setAttribute('data-lang', _currentLang);
+document.documentElement.setAttribute('dir', _currentLang === 'ar' ? 'rtl' : 'ltr');
+
+function _t(key) { return (KIWI_T[_currentLang] || KIWI_T.ar)[key] || (KIWI_T.ar)[key] || key; }
+
+function _applyTranslations() {
+  const lang = _currentLang;
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  document.documentElement.lang = lang;
+
+  const T = KIWI_T[lang] || KIWI_T.ar;
+  const set = (id, val) => { const e = document.getElementById(id); if(e) e.innerHTML = val; };
+  const setTxt = (id, val) => { const e = document.getElementById(id); if(e) e.textContent = val; };
+
+  set('hero-tag-txt',   T.heroTag);
+  set('hero-h1-txt',    T.heroH1);
+  setTxt('hero-p-txt',  T.heroP);
+  setTxt('btn-explore-txt', T.btnExplore);
+  setTxt('btn-coins-txt',   T.btnCoins);
+  setTxt('nl-trips',    T.navTrips);
+  setTxt('nl-lb',       T.navLB);
+  setTxt('nl-coins',    T.navCoins);
+  setTxt('nl-contact',  T.navContact);
+  setTxt('trips-title-txt',    T.tripsTitle);
+  setTxt('trips-sub-txt',      T.tripsSub);
+  setTxt('lb-title-txt',       T.lbTitle);
+  setTxt('lb-sub-txt',         T.lbSub);
+  setTxt('coins-title-txt',    T.coinsTitle);
+  setTxt('coins-sub-txt',      T.coinsSub);
+  setTxt('how-earn-txt',       T.howEarn);
+  setTxt('cs1-txt', T.cs1); setTxt('cs1d-txt', T.cs1d);
+  setTxt('cs2-txt', T.cs2); setTxt('cs2d-txt', T.cs2d);
+  setTxt('cs3-txt', T.cs3); setTxt('cs3d-txt', T.cs3d);
+  setTxt('cs4-txt', T.cs4); setTxt('cs4d-txt', T.cs4d);
+  setTxt('tiers-title-txt',    T.tiersTitle);
+  setTxt('tiers-sub-txt',      T.tiersSub);
+  setTxt('contact-title-txt',  T.contactTitle);
+  setTxt('contact-sub-txt',    T.contactSub);
+  setTxt('form-title-txt',     T.formTitle);
+  setTxt('f-name-lbl',  T.fName);
+  setTxt('f-phone-lbl', T.fPhone);
+  setTxt('f-msg-lbl',   T.fMsg);
+  setTxt('f-send-btn',  T.fSend);
+  setTxt('t1-name', T.t1); setTxt('t2-name', T.t2); setTxt('t3-name', T.t3);
+  setTxt('disc1', T.disc); setTxt('disc2', T.disc); setTxt('disc3', T.disc);
+  setTxt('foot-desc-txt', T.footDesc);
+  setTxt('set-theme-lbl', T.themeLabel);
+  setTxt('set-lang-lbl',  T.langLabel);
+
+  // Update signin button
+  const signinEl = document.getElementById('signin-lbl');
+  if (signinEl) {
+    const logged = document.getElementById('btn-main-signin')?.style.display === 'none';
+    signinEl.textContent = logged ? T.signout : T.signin;
+  }
+
+  // Active lang button
+  document.querySelectorAll('.lang-opt').forEach(o => {
+    o.classList.remove('active');
+    if (o.getAttribute('onclick')?.includes("'" + lang + "'")) o.classList.add('active');
+  });
+}
+
+window.setTheme = function(name, el) {
+  _currentTheme = name;
+  document.documentElement.setAttribute('data-theme', name);
+  localStorage.setItem('kiwi_theme', name);
+  document.querySelectorAll('.theme-opt').forEach(o => o.classList.remove('active'));
+  if (el) el.classList.add('active');
+  else {
+    document.querySelectorAll('.theme-opt').forEach(o => {
+      if (o.getAttribute('onclick')?.includes("'" + name + "'")) o.classList.add('active');
+    });
+  }
+};
+
+window.setLang = function(lang, el) {
+  _currentLang = lang;
+  localStorage.setItem('kiwi_lang', lang);
+  document.querySelectorAll('.lang-opt').forEach(o => o.classList.remove('active'));
+  if (el) el.classList.add('active');
+  _applyTranslations();
+  // Re-render trips with new lang
+  if (window._kiwiRenderTrips) window._kiwiRenderTrips();
+};
+
+window.openModal  = function(id) { const e=document.getElementById(id); if(e) e.classList.add('open'); };
+window.closeModal = function(id) { const e=document.getElementById(id); if(e) e.classList.remove('open'); };
+
+window.openProfileOrLogin = function() {
+  if (window._kiwiUser) window.openModal('profileModal');
+  else window.openModal('loginModal');
+};
+
+window.showToast = function(msg, sub) {
+  const t=document.getElementById('toast');
+  if(!t) return;
+  document.getElementById('toast-msg').textContent=msg;
+  const s=document.getElementById('toast-sub'); if(s) s.textContent=sub||'';
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer=setTimeout(()=>t.classList.remove('show'),3500);
+};
+
+window.otpMove = function(el, nextId) {
+  el.value = el.value.replace(/\D/g,'');
+  if (el.value && nextId) document.getElementById(nextId)?.focus();
+};
+
+window.changePpl = function(d) {
+  const max = window._kiwiSelectedTrip?.max_people || 10;
+  window._kiwiPpl = Math.max(1, Math.min(max, (window._kiwiPpl||1) + d));
+  const el = document.getElementById('ppl-n');
+  if(el) el.textContent = window._kiwiPpl;
+  if(window._updateBookingSummary) window._updateBookingSummary();
+};
+
+window.toggleCoins = function() {
+  window._kiwiUseCoins = !window._kiwiUseCoins;
+  const tog=document.getElementById('coinsToggle');
+  if(tog) tog.classList.toggle('on', window._kiwiUseCoins);
+  const info=document.getElementById('coins-disc-info');
+  if(info) info.style.display = window._kiwiUseCoins ? 'block' : 'none';
+  if(window._updateBookingSummary) window._updateBookingSummary();
+};
+
+window.switchDTab = function(panel, el) {
+  document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.dpanel').forEach(p=>p.classList.remove('active'));
+  if(el) el.classList.add('active');
+  const dp=document.getElementById('dp-'+panel);
+  if(dp) dp.classList.add('active');
+};
+
+window.switchPTab = function(panel, el) {
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.ppanel').forEach(p=>p.classList.remove('active'));
+  if(el) el.classList.add('active');
+  const pp=document.getElementById('pp-'+panel);
+  if(pp) pp.classList.add('active');
+  if(panel==='history' && window._loadCoinHistory) window._loadCoinHistory();
+};
+
+window.adminPage = function(name, el) {
+  document.querySelectorAll('.admin-page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const ap=document.getElementById('ap-'+name);
+  if(ap) ap.classList.add('active');
+  if(el) el.classList.add('active');
+  const T2={dashboard:'📊 Dashboard',trips:'✈️ Trips',bookings:'📋 Bookings',users:'👥 Users',['coins-admin']:'🪙 Coins',events:'🎁 Events',team:'📞 Team',['settings-admin']:'⚙️ Settings'};
+  const ptitle=document.getElementById('admin-page-title');
+  if(ptitle) ptitle.textContent=T2[name]||name;
+  if(name==='bookings' && window._loadAdminBookings) window._loadAdminBookings();
+  if(name==='events'   && window._loadAdminEvents)   window._loadAdminEvents();
+};
+
+window.exitAdmin = function() {
+  document.getElementById('adminApp').style.display='none';
+  document.getElementById('mainApp').style.display='block';
+};
+
+window.adminLogout = function() {
+  window._adminLoggedIn=false;
+  document.getElementById('admin-step1').style.display='block';
+  document.getElementById('admin-step2').style.display='none';
+  ['ao1','ao2','ao3','ao4','ao5','ao6'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  const pw=document.getElementById('adm-pw');if(pw)pw.value='';
+  window.exitAdmin();
+};
+
+window.filterTripsUI = function() { if(window._kiwiRenderTrips) window._kiwiRenderTrips(); };
+
+window.selColor = function(el, val) {
+  document.querySelectorAll('.color-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  const tc=document.getElementById('tf-color');if(tc)tc.value=val;
+  window._selectedColor=val;
+};
+
+window.selEventType = function(type, el) {
+  const et=document.getElementById('ef-type');if(et)et.value=type;
+  document.querySelectorAll('[onclick*="selEventType"]').forEach(b=>b.classList.remove('active'));
+  if(el)el.classList.add('active');
+};
+
+window.openTripForm = function(id) { if(window._openTripForm) window._openTripForm(id); };
+window.editTrip     = window.openTripForm;
+window.deleteTrip   = function(id) { if(window._deleteTrip) window._deleteTrip(id); };
+window.openEventForm= function() { if(window._openEventForm) window._openEventForm(); };
+window.editEvent    = function(id){ if(window._editEvent) window._editEvent(id); };
+window.deleteEvent  = function(id){ if(window._deleteEvent) window._deleteEvent(id); };
+window.openTeamForm = function() { if(window._openTeamForm) window._openTeamForm(); };
+window.deleteTeamMember=function(id){if(window._deleteTeamMember)window._deleteTeamMember(id);};
+window.giveCoins    = function() { if(window._giveCoins) window._giveCoins(); };
+window.saveTrip     = function() { if(window._saveTrip) window._saveTrip(); };
+window.saveEvent    = function() { if(window._saveEvent) window._saveEvent(); };
+window.saveTeamMember=function(){if(window._saveTeamMember)window._saveTeamMember();};
+window.saveSettings = function() { showToast('✅ تم الحفظ',''); };
+window.sendContact  = function() { if(window._sendContact) window._sendContact(); };
+window.validateOffer= function() { if(window._validateOffer) window._validateOffer(); };
+window.confirmBooking=function(){if(window._confirmBooking)window._confirmBooking();};
+window.openBookingFromDetail=function(){closeModal('tripDetailModal');if(window._openBookingModal)window._openBookingModal();};
+window.openTripDetail=function(id){if(window._openTripDetail)window._openTripDetail(id);};
+window.openWalletModal=function(){if(window._openWalletModal)window._openWalletModal();};
+window.signOut=function(){if(window._signOut)window._signOut();};
+window.handleAvatar=function(e){if(window._handleAvatar)window._handleAvatar(e);};
+window.handleTripImg=function(e){if(window._handleTripImg)window._handleTripImg(e);};
+window.tryAdminLogin=function(){if(window._tryAdminLogin)window._tryAdminLogin();};
+window.verifyAdminOTP=function(){if(window._verifyAdminOTP)window._verifyAdminOTP();};
+window.sendOTP=function(){if(window._sendOTP)window._sendOTP();};
+window.verifyOTP=function(){if(window._verifyOTP)window._verifyOTP();};
+window.showPhoneStep=function(){
+  document.getElementById('login-phone-step').style.display='block';
+  document.getElementById('login-otp-step').style.display='none';
+};
+window.saveProfile=function(){if(window._saveProfile)window._saveProfile();};
+window.completeProfile=function(){if(window._completeProfile)window._completeProfile();};
+window.loadBookings=function(f){if(window._loadAdminBookings)window._loadAdminBookings(f);};
+window.filterAdminTrips=function(q){if(window._filterAdminTrips)window._filterAdminTrips(q);};
+window.filterUsers=function(q){const rows=document.querySelectorAll('#users-tbl tr');rows.forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none');};
+window.updateBookingStatus=function(id,s){if(window._updateBookingStatus)window._updateBookingStatus(id,s);};
+
+// Apply on load
+document.addEventListener('DOMContentLoaded', () => {
+  _applyTranslations();
+  // Mark active theme button
+  document.querySelectorAll('.theme-opt').forEach(o => {
+    if (o.getAttribute('onclick')?.includes("'" + _currentTheme + "'")) o.classList.add('active');
+    else o.classList.remove('active');
+  });
+  // Overlay close
+  document.querySelectorAll('.overlay').forEach(ov => {
+    ov.addEventListener('click', e => { if(e.target===ov) ov.classList.remove('open'); });
+  });
+  // Search tabs
+  document.querySelectorAll('.stab').forEach(tab => tab.addEventListener('click', () => {
+    document.querySelectorAll('.stab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  }));
+  // Admin hash
+  if(window.location.hash==='#admin') setTimeout(()=>window.openModal('adminLoginModal'),500);
+});
+</script>
+
+</head>
+<body>
+
+<!-- ═══════════ MAIN WEBSITE ═══════════ -->
+<div id="mainApp">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="scrollTo({top:0,behavior:'smooth'})">KIWI</div>
+  <ul class="nav-links">
+    <li><a href="#trips">الرحلات</a></li>
+    <li><a href="#leaderboard">لوحة الشرف</a></li>
+    <li><a href="#coins-sec">كوينات</a></li>
+    <li><a href="#contact">تواصل</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="coin-nav" onclick="openWalletModal()" id="nav-coin-badge" style="display:none">
+      <span style="font-size:.95rem">🪙</span>
+      <span id="nav-coins">0</span>
+    </div>
+    <div class="nav-btn" onclick="openModal('settingsModal')">⚙️</div>
+    <div class="nav-btn" onclick="openProfileOrLogin()" id="nav-avatar-btn">👤</div>
+    <button class="btn-signin" onclick="openModal('loginModal')" id="btn-main-signin">
+      <span>📱</span><span id="signin-lbl">تسجيل الدخول</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="kiwi-deco kd1"></div>
+  <div class="kiwi-deco kd2"></div>
+  <div class="kiwi-deco kd3"></div>
+  <div class="hero-content">
+    <div class="hero-tag" id="hero-tag">🥝 أكتر من 500 رحلة في انتظارك</div>
+    <h1 id="hero-h1">اكتشف العالم<br>واكسب معنا</h1>
+    <p id="hero-p">احجز رحلتك، اكسب Kiwi كوينات، واستمتع بخصومات حصرية كل ما تسافر معانا أكتر</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('trips').scrollIntoView({behavior:'smooth'})" id="btn-explore">🔍 استكشف الرحلات</button>
+      <button class="btn-secondary" onclick="document.getElementById('coins-sec').scrollIntoView({behavior:'smooth'})" id="btn-how-coins">🪙 إزاي الكوينات بتشتغل؟</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num" id="stat-trips-n">—</div><div class="stat-lbl">رحلة متاحة</div></div>
+      <div class="stat"><div class="stat-num" id="stat-users-n">—</div><div class="stat-lbl">عميل سعيد</div></div>
+      <div class="stat"><div class="stat-num">+50</div><div class="stat-lbl">وجهة سياحية</div></div>
+      <div class="stat"><div class="stat-num">4.9⭐</div><div class="stat-lbl">تقييم العملاء</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-section">
+  <div class="search-box">
+    <div class="search-tabs">
+      <div class="stab active">🏖️ شاطئية</div>
+      <div class="stab">🏔️ جبلية</div>
+      <div class="stab">🏙️ مدن</div>
+      <div class="stab">🎪 عائلية</div>
+    </div>
+    <div class="search-fields">
+      <div class="field-g"><label>الوجهة</label><input type="text" id="search-dest" placeholder="مثلاً: شرم، الغردقة..."></div>
+      <div class="field-g"><label>تاريخ السفر</label><input type="date" id="search-date"></div>
+      <div class="field-g"><label>عدد الأفراد</label>
+        <select id="search-ppl"><option>1 شخص</option><option>2 شخص</option><option>3-5</option><option>6+</option></select>
+      </div>
+      <button class="btn-primary btn-sm" onclick="filterTripsUI()">🔍 ابحث</button>
+    </div>
+  </div>
+</div>
+
+<!-- TRIPS -->
+<section id="trips">
+  <div class="sec-hd">
+    <div class="sec-tag">✈️ رحلاتنا</div>
+    <h2>اختار رحلتك المفضلة</h2>
+    <p>بيانات حقيقية من Firebase — أي رحلة يضيفها الأدمن تظهر هنا فوراً</p>
+  </div>
+  <div class="trips-grid" id="tripsGrid">
+    <div class="loading-card"></div>
+    <div class="loading-card"></div>
+    <div class="loading-card"></div>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section class="leaderboard-section" id="leaderboard">
+  <div class="sec-hd">
+    <div class="sec-tag">🏆 لوحة الشرف</div>
+    <h2>أكثر المسافرين معنا</h2>
+    <p>الأعضاء الأكثر نشاطاً وأكثر كوينات 🪙</p>
+  </div>
+  <div class="lb-grid" id="leaderboard-grid">
+    <div style="text-align:center;padding:2rem;color:var(--muted)"><div class="spinner"></div></div>
+  </div>
+</section>
+
+<!-- COINS -->
+<section class="coins-section" id="coins-sec">
+  <div class="sec-hd"><div class="sec-tag">🪙 نظام الكوينات</div>
+    <h2>كل ما سافرت، كل ما كسبت</h2>
+    <p>اكسب Kiwi كوينات على كل تعامل</p>
+  </div>
+  <div class="coins-grid">
+    <div style="display:flex;justify-content:center">
+      <div style="position:relative;width:200px;height:200px;display:flex;align-items:center;justify-content:center">
+        <div style="position:absolute;inset:-25px;border-radius:50%;border:1px dashed rgba(var(--primary-rgb),.3);animation:spin1 20s linear infinite"></div>
+        <div class="kiwi-coin"><div class="kiwi-coin-inner">KIWI</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sec-tag" style="display:inline-block;margin-bottom:.8rem">كيف تكسب؟</div>
+      <h2 style="font-size:1.9rem;font-weight:800;margin-bottom:.9rem">اكسب <span style="color:var(--primary)">Kiwi كوينات</span><br>على كل خطوة</h2>
+      <p style="color:var(--muted);line-height:1.9;margin-bottom:1.5rem">كل تعامل مع Kiwi بيجيبلك كوينات تجمعها وتستخدمها متى ما حبيت</p>
+      <div>
+        <div class="coin-step"><div class="step-ic">🎯</div><div><strong>احجز رحلة</strong><br><small style="color:var(--muted)">اكسب 10 كوين لكل 100 EGP</small></div></div>
+        <div class="coin-step"><div class="step-ic">⭐</div><div><strong>قيّم رحلتك</strong><br><small style="color:var(--muted)">اكسب 50 كوين بعد كل تقييم</small></div></div>
+        <div class="coin-step"><div class="step-ic">👥</div><div><strong>ادعو أصحابك</strong><br><small style="color:var(--muted)">اكسب 200 كوين لكل دعوة</small></div></div>
+        <div class="coin-step"><div class="step-ic">🎁</div><div><strong>استخدم الكوينات</strong><br><small style="color:var(--muted)">100 كوين = خصم 10 EGP</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section style="background:var(--bg2)">
+  <div class="sec-hd"><div class="sec-tag">🏆 مستويات العضوية</div><h2>تقدّم مع كل رحلة</h2></div>
+  <div class="tiers-grid">
+    <div class="tier-card">
+      <div style="font-size:2.3rem;margin-bottom:.8rem">🥉</div>
+      <div style="font-size:1.1rem;font-weight:800;margin-bottom:.3rem">برونزي</div>
+      <div style="font-size:.82rem;color:var(--primary);margin-bottom:.8rem">0 — 999 🪙</div>
+      <div class="tier-disc">5%</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-bottom:1.2rem">خصم</div>
+      <ul class="tier-perks"><li>10 كوين / 100 EGP</li><li>عروض شهرية</li></ul>
+    </div>
+    <div class="tier-card featured">
+      <div style="font-size:2.3rem;margin-bottom:.8rem">🥈</div>
+      <div style="font-size:1.1rem;font-weight:800;margin-bottom:.3rem">فضي</div>
+      <div style="font-size:.82rem;color:var(--primary);margin-bottom:.8rem">1000 — 4999 🪙</div>
+      <div class="tier-disc">15%</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-bottom:1.2rem">خصم</div>
+      <ul class="tier-perks"><li>15 كوين / 100 EGP</li><li>دعم 24/7</li><li>إلغاء مجاني</li></ul>
+    </div>
+    <div class="tier-card">
+      <div style="font-size:2.3rem;margin-bottom:.8rem">🥇</div>
+      <div style="font-size:1.1rem;font-weight:800;margin-bottom:.3rem">ذهبي</div>
+      <div style="font-size:.82rem;color:var(--primary);margin-bottom:.8rem">5000+ 🪙</div>
+      <div class="tier-disc">25%</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-bottom:1.2rem">خصم</div>
+      <ul class="tier-perks"><li>20 كوين / 100 EGP</li><li>مدير VIP</li><li>صالات VIP</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section style="background:var(--bg2);border-top:1px solid var(--border)" id="contact">
+  <div class="sec-hd"><div class="sec-tag">📞 تواصل معنا</div><h2>نحن هنا لمساعدتك</h2></div>
+  <div class="contact-grid">
+    <div>
+      <div id="team-members-list"></div>
+    </div>
+    <div class="contact-form-box">
+      <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:1.2rem">ابعتلنا رسالة</h3>
+      <div class="form-g"><label>اسمك</label><input type="text" id="cf-name"></div>
+      <div class="form-g"><label>رقم الموبايل</label><input type="tel" id="cf-phone" placeholder="01xxxxxxxxx"></div>
+      <div class="form-g"><label>رسالتك</label><textarea id="cf-msg" placeholder="اكتب رسالتك..."></textarea></div>
+      <button class="btn-submit" onclick="sendContact()">📤 إرسال</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">KIWI</div>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.8">شركة سياحة متخصصة في تنظيم الرحلات الداخلية والخارجية.</p>
+    </div>
+    <div><h4>الرحلات</h4><ul><li><a href="#trips">رحلات شاطئية</a></li><li><a href="#trips">رحلات تاريخية</a></li><li><a href="#trips">باقات عائلية</a></li></ul></div>
+    <div><h4>الكوينات</h4><ul><li><a href="#coins-sec">كيف تكسب؟</a></li><li><a href="#coins-sec">مستويات العضوية</a></li></ul></div>
+    <div><h4>تواصل</h4><ul id="footer-contacts"></ul></div>
+  </div>
+  <div class="footer-bot">
+    <span>© 2026 Kiwi Tourism. جميع الحقوق محفوظة.</span>
+    <button class="admin-entry-btn" onclick="openModal('adminLoginModal')">⚙️ Admin</button>
+  </div>
+</footer>
+</div><!-- end mainApp -->
+
+<!-- ═══════════ ADMIN APP ═══════════ -->
+<div id="adminApp">
+  <div class="admin-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo"><div class="logo">KIWI ADMIN</div><div style="font-size:.68rem;color:var(--muted)">Control Panel</div></div>
+      <div class="sidebar-user">
+        <div class="admin-av">🥝</div>
+        <div><div style="font-size:.85rem;font-weight:700">Ahmed Amr</div><div style="font-size:.7rem;color:var(--primary)">⚡ Super Admin</div></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-sec-t">الرئيسية</div>
+        <div class="nav-item active" onclick="adminPage('dashboard',this)"><span class="nav-icon">📊</span>لوحة التحكم</div>
+        <div class="nav-sec-t">المحتوى</div>
+        <div class="nav-item" onclick="adminPage('trips',this)"><span class="nav-icon">✈️</span>الرحلات</div>
+        <div class="nav-item" onclick="adminPage('events',this)"><span class="nav-icon">🎁</span>الفعاليات والعروض</div>
+        <div class="nav-sec-t">العملاء</div>
+        <div class="nav-item" onclick="adminPage('bookings',this)"><span class="nav-icon">📋</span>الحجوزات<span class="nav-badge2" id="pending-badge">0</span></div>
+        <div class="nav-item" onclick="adminPage('users',this)"><span class="nav-icon">👥</span>المستخدمين</div>
+        <div class="nav-item" onclick="adminPage('coins-admin',this)"><span class="nav-icon">🪙</span>إدارة الكوينات</div>
+        <div class="nav-sec-t">الموقع</div>
+        <div class="nav-item" onclick="adminPage('payment-admin',this)"><span class="nav-icon">💳</span>بوابات الدفع</div>
+        <div class="nav-item" onclick="adminPage('team',this)"><span class="nav-icon">📞</span>فريق التواصل</div>
+        <div class="nav-item" onclick="adminPage('settings-admin',this)"><span class="nav-icon">⚙️</span>الإعدادات</div>
+        <div class="nav-item" onclick="exitAdmin()"><span class="nav-icon">🌐</span>الموقع الرئيسي</div>
+      </nav>
+      <div class="sidebar-foot">
+        <button class="btn-submit btn-danger" onclick="adminLogout()">🚪 خروج</button>
+      </div>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-topbar" style="background:var(--bg2)">
+        <button onclick="document.getElementById('sidebar').classList.toggle('open')" 
+          style="background:var(--bg3);border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:9px;cursor:pointer;font-size:1.1rem;display:none" id="sidebar-toggle" class="sidebar-toggle">☰</button>
+        <div style="font-size:1.05rem;font-weight:800" id="admin-page-title">📊 لوحة التحكم</div>
+        <div style="display:flex;gap:.6rem;align-items:center">
+          <div style="font-size:.8rem;color:var(--muted)" id="admin-clock"></div>
+          <div class="nav-btn">🔔</div>
+        </div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <div class="admin-page active" id="ap-dashboard">
+        <div class="stat-grid">
+          <div class="stat-card"><div style="font-size:1.4rem">💰</div><div class="stat-val" id="a-rev">0</div><div class="stat-lbl2">الإيرادات (EGP)</div></div>
+          <div class="stat-card"><div style="font-size:1.4rem">🎫</div><div class="stat-val" id="a-bk">0</div><div class="stat-lbl2">الحجوزات</div></div>
+          <div class="stat-card"><div style="font-size:1.4rem">👥</div><div class="stat-val" id="a-us">0</div><div class="stat-lbl2">المستخدمين</div></div>
+          <div class="stat-card"><div style="font-size:1.4rem">✈️</div><div class="stat-val" id="a-tr">0</div><div class="stat-lbl2">الرحلات</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:1.2rem">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:1.4rem">
+            <h3 style="font-size:.92rem;font-weight:700;margin-bottom:.5rem">📈 الإيرادات الشهرية</h3>
+            <div class="mini-bars" id="rev-chart"></div>
+            <div style="display:flex;gap:.3rem;margin-top:.2rem" id="rev-labels"></div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:1.4rem">
+            <h3 style="font-size:.92rem;font-weight:700;margin-bottom:.8rem">⏰ آخر الحجوزات</h3>
+            <div id="dash-recent"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRIPS ADMIN -->
+      <div class="admin-page" id="ap-trips">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;flex-wrap:wrap;gap:.8rem">
+          <h2 style="font-size:1.2rem;font-weight:800">✈️ إدارة الرحلات</h2>
+          <button class="btn-add" onclick="openTripForm()">➕ رحلة جديدة</button>
+        </div>
+        <div class="tbl-card">
+          <div class="tbl-hd"><h3>كل الرحلات (<span id="trips-count-admin">0</span>)</h3>
+            <div class="tbl-acts"><input class="search-inp" placeholder="🔍 ابحث..." oninput="filterAdminTrips(this.value)"></div>
+          </div>
+          <div style="overflow-x:auto"><table>
+            <thead><tr><th>الرحلة</th><th>الوجهة</th><th>الأيام</th><th>السعر</th><th>الكوينات</th><th>الحالة</th><th>إجراءات</th></tr></thead>
+            <tbody id="trips-tbl"></tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <!-- BOOKINGS ADMIN -->
+      <div class="admin-page" id="ap-bookings">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;flex-wrap:wrap;gap:.8rem">
+          <h2 style="font-size:1.2rem;font-weight:800">📋 الحجوزات</h2>
+          <div style="display:flex;gap:.5rem">
+            <button class="btn-filt" onclick="loadBookings('all')">الكل</button>
+            <button class="btn-filt" onclick="loadBookings('pending')">⏳ معلقة</button>
+            <button class="btn-filt" onclick="loadBookings('confirmed')">✅ مؤكدة</button>
+          </div>
+        </div>
+        <div class="tbl-card"><div style="overflow-x:auto"><table>
+          <thead><tr><th>#</th><th>العميل</th><th>الرحلة</th><th>تاريخ السفر</th><th>المبلغ</th><th>طريقة الدفع</th><th>الحالة</th><th>إجراءات</th></tr></thead>
+          <tbody id="bookings-tbl"></tbody>
+        </table></div></div>
+      </div>
+
+      <!-- USERS ADMIN -->
+      <div class="admin-page" id="ap-users">
+        <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:1.4rem">👥 المستخدمين</h2>
+        <div class="tbl-card">
+          <div class="tbl-hd"><h3>المستخدمين المسجلين (<span id="users-count-admin">0</span>)</h3>
+            <div class="tbl-acts"><input class="search-inp" placeholder="🔍 ابحث..." oninput="filterUsers(this.value)"></div>
+          </div>
+          <div style="overflow-x:auto"><table>
+            <thead><tr><th>المستخدم</th><th>الموبايل</th><th>العمر</th><th>المدينة</th><th>الكوينات</th><th>الطبقة</th><th>الرحلات</th><th>تاريخ التسجيل</th></tr></thead>
+            <tbody id="users-tbl"></tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <!-- COINS ADMIN -->
+      <div class="admin-page" id="ap-coins-admin">
+        <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:1.4rem">🪙 إدارة الكوينات</h2>
+        <div class="tbl-card">
+          <div class="tbl-hd"><h3>أعطِ كوينات لمستخدم</h3></div>
+          <div style="padding:1.4rem">
+            <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.2rem">اختار مستخدم وحدد عدد الكوينات اللي هتضيفها أو تخصمها</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:1rem;align-items:end">
+              <div class="form-g" style="margin:0"><label>المستخدم</label>
+                <select id="coins-user-select"><option value="">-- اختار مستخدم --</option></select>
+              </div>
+              <div class="form-g" style="margin:0"><label>الكوينات (+ أو -)</label>
+                <input type="number" id="coins-amount-input" placeholder="مثال: 100 أو -50">
+              </div>
+              <button class="btn-add" onclick="giveCoins()">🪙 تنفيذ</button>
+            </div>
+          </div>
+        </div>
+        <div class="tbl-card" style="margin-top:1.2rem">
+          <div class="tbl-hd"><h3>🏆 لوحة الشرف — أعلى كوينات</h3></div>
+          <div style="overflow-x:auto"><table>
+            <thead><tr><th>الترتيب</th><th>المستخدم</th><th>الكوينات</th><th>الطبقة</th><th>الرحلات</th></tr></thead>
+            <tbody id="coins-leaderboard-tbl"></tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <!-- EVENTS ADMIN -->
+      <div class="admin-page" id="ap-events">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;flex-wrap:wrap;gap:.8rem">
+          <h2 style="font-size:1.2rem;font-weight:800">🎁 الفعاليات والعروض</h2>
+          <button class="btn-add" onclick="openEventForm()">➕ فعالية جديدة</button>
+        </div>
+        <div class="events-grid" id="events-grid-admin"></div>
+      </div>
+
+      <!-- TEAM ADMIN -->
+      <div class="admin-page" id="ap-team">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;flex-wrap:wrap;gap:.8rem">
+          <h2 style="font-size:1.2rem;font-weight:800">📞 فريق التواصل</h2>
+          <button class="btn-add" onclick="openTeamForm()">➕ عضو جديد</button>
+        </div>
+        <div id="team-admin-list"></div>
+      </div>
+
+      <!-- SETTINGS ADMIN -->
+      <div class="admin-page" id="ap-settings-admin">
+        <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:1.4rem">⚙️ إعدادات الموقع</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:1.5rem">
+            <h3 style="font-size:.95rem;font-weight:700;margin-bottom:1rem">🪙 إعدادات الكوينات</h3>
+            <div class="form-g"><label>كوينات / 100 EGP (برونزي)</label><input type="number" id="set-bronze" value="10"></div>
+            <div class="form-g"><label>كوينات / 100 EGP (فضي)</label><input type="number" id="set-silver" value="15"></div>
+            <div class="form-g"><label>كوينات / 100 EGP (ذهبي)</label><input type="number" id="set-gold" value="20"></div>
+            <div class="form-g"><label>قيمة 100 كوين (EGP)</label><input type="number" id="set-coin-val" value="10"></div>
+            <button class="btn-submit" onclick="saveSettings()">💾 حفظ</button>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:1.5rem">
+            <h3 style="font-size:.95rem;font-weight:700;margin-bottom:1rem">🏢 معلومات الشركة</h3>
+            <div class="form-g"><label>اسم الموقع</label><input type="text" id="set-site-name" value="Kiwi Tourism"></div>
+            <div class="form-g"><label>إيميل رئيسي</label><input type="email" id="set-email" value="ahmedelbadryyyy@gmail.com"></div>
+            <div class="form-g"><label>رقم الهاتف</label><input type="tel" id="set-phone" value="01118586503"></div>
+            <button class="btn-submit" onclick="saveSettings()">💾 حفظ</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT ADMIN -->
+      <div class="admin-page" id="ap-payment-admin">
+        <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:1.4rem">💳 بوابات الدفع الإلكتروني</h2>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:1.5rem;max-width:500px">
+          <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.2rem">أضف أرقامك هنا لتظهر للعملاء في واجهة الحجز فوراً.</p>
+          <div class="form-g"><label>فودافون كاش (Vodafone Cash)</label><input type="text" id="set-vf-cash" placeholder="مثال: 01012345678"></div>
+          <div class="form-g"><label>انستا باي (InstaPay)</label><input type="text" id="set-instapay" placeholder="مثال: ahmed@instapay"></div>
+          <div class="form-g"><label>رقم / كود فوري (Fawry)</label><input type="text" id="set-fawry" placeholder="مثال: 123456"></div>
+          <button class="btn-submit" onclick="saveSettings()">💾 حفظ أرقام الدفع</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div><!-- end adminApp -->
+
+<!-- ═══════════ MODALS ═══════════ -->
+
+<!-- LOGIN (Phone OTP) -->
+<div class="overlay" id="loginModal">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-hd"><h3>📱 تسجيل الدخول</h3><button class="close-btn" onclick="closeModal('loginModal')">✕</button></div>
+    <div class="modal-body">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:4px;background:linear-gradient(135deg,var(--primary),var(--kiwi5));-webkit-background-clip:text;-webkit-text-fill-color:transparent">KIWI</div>
+        <p style="color:var(--muted);font-size:.82rem">ادخل برقم موبايلك وكود التحقق</p>
+      </div>
+      <div id="login-phone-step">
+        <div class="form-g">
+          <label>رقم الموبايل</label>
+          <div class="phone-input-wrap">
+            <input class="phone-code" type="text" value="+20" id="phone-code">
+            <input type="tel" id="phone-input" placeholder="01xxxxxxxxx" style="flex:1" class="form-g" onkeydown="if(event.key==='Enter')sendOTP()">
+          </div>
+        </div>
+        <div id="recaptcha-container" style="margin:1rem 0"></div>
+        <button class="btn-submit" onclick="sendOTP()" id="btn-send-otp">📤 إرسال كود التحقق</button>
+        <p style="font-size:.75rem;color:var(--muted);text-align:center;margin-top:.8rem">بإرسال الكود أنت موافق على شروط الاستخدام</p>
+      </div>
+      <div id="login-otp-step" style="display:none">
+        <p style="color:var(--muted);font-size:.85rem;margin-bottom:1rem;text-align:center">أدخل الكود المكون من 6 أرقام اللي وصلك على <strong style="color:var(--primary)" id="otp-phone-display"></strong></p>
+        <div class="otp-wrap">
+          <input type="text" class="otp-in" maxlength="1" id="o1" oninput="otpMove(this,'o2')">
+          <input type="text" class="otp-in" maxlength="1" id="o2" oninput="otpMove(this,'o3')">
+          <input type="text" class="otp-in" maxlength="1" id="o3" oninput="otpMove(this,'o4')">
+          <input type="text" class="otp-in" maxlength="1" id="o4" oninput="otpMove(this,'o5')">
+          <input type="text" class="otp-in" maxlength="1" id="o5" oninput="otpMove(this,'o6')">
+          <input type="text" class="otp-in" maxlength="1" id="o6" oninput="otpMove(this,null)">
+        </div>
+        <button class="btn-submit" onclick="verifyOTP()" id="btn-verify-otp">✅ تأكيد الكود</button>
+        <button class="btn-secondary btn-sm" onclick="showPhoneStep()" style="width:100%;margin-top:.5rem">← تغيير الرقم</button>
+      </div>
+      <div id="login-profile-step" style="display:none">
+        <h4 style="font-weight:700;margin-bottom:1rem;text-align:center">👋 أكمل بروفايلك</h4>
+        <div class="form-g"><label>اسمك</label><input type="text" id="new-user-name" placeholder="Ahmed Mohamed"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+          <div class="form-g"><label>عمرك</label><input type="number" id="new-user-age" placeholder="25" min="1" max="120"></div>
+          <div class="form-g"><label>مدينتك</label><input type="text" id="new-user-city" placeholder="القاهرة"></div>
+        </div>
+        <button class="btn-submit" onclick="completeProfile()">🚀 دخول Kiwi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRIP DETAIL -->
+<div class="overlay" id="tripDetailModal">
+  <div class="modal wide">
+    <div class="trip-detail-hero" id="detail-hero">
+      <div id="detail-hero-bg" class="trip-detail-hero-bg" style="background:linear-gradient(135deg,#2E7D32,#8BC34A)"></div>
+      <iframe id="detail-hero-vid" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;pointer-events:none;"></iframe>
+      <img id="detail-hero-img" src="" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none">
+      <div class="overlay-grad"></div>
+      <button class="back-btn-detail" onclick="closeModal('tripDetailModal')">‹ رجوع</button>
+      <div style="position:absolute;bottom:1.2rem;inset-inline-start:1.5rem;inset-inline-end:1.5rem;z-index:3">
+        <h2 id="detail-name" style="font-size:1.4rem;font-weight:800;color:#fff"></h2>
+        <p id="detail-loc" style="color:rgba(255,255,255,.8);font-size:.82rem;margin-top:.3rem"></p>
+      </div>
+    </div>
+    <div style="padding:1.5rem 2rem">
+      <div style="display:flex;gap:.8rem;margin-bottom:1.3rem;flex-wrap:wrap" id="detail-chips"></div>
+      <div class="detail-tabs">
+        <button class="dtab active" onclick="switchDTab('timeline',this)">📋 البرنامج</button>
+        <button class="dtab" onclick="switchDTab('route',this)">🗺️ الخط</button>
+        <button class="dtab" onclick="switchDTab('includes',this)">✅ يشمل</button>
+      </div>
+      <div class="dpanel active" id="dp-timeline"></div>
+      <div class="dpanel" id="dp-route"></div>
+      <div class="dpanel" id="dp-includes"></div>
+      <button class="btn-submit" style="margin-top:1rem" onclick="openBookingFromDetail()">🎫 احجز الآن</button>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING -->
+<div class="overlay" id="bookingModal">
+  <div class="modal">
+    <div class="modal-hd"><h3>🎫 تأكيد الحجز</h3><button class="close-btn" onclick="closeModal('bookingModal')">✕</button></div>
+    <div class="modal-body">
+      <div style="background:var(--bg3);border-radius:14px;padding:.9rem 1.1rem;margin-bottom:1.2rem;display:flex;gap:1rem;align-items:center;border:1px solid var(--border)">
+        <div id="bk-thumb" style="width:56px;height:56px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:2rem"></div>
+        <div><div id="bk-name" style="font-weight:700;margin-bottom:.25rem"></div><div id="bk-price-show" style="color:var(--primary);font-weight:800;font-size:1.1rem"></div></div>
+      </div>
+      <div class="form-g"><label>تاريخ السفر</label><input type="date" id="bk-date"></div>
+      <div class="form-g"><label>عدد الأفراد</label>
+        <div style="display:flex;align-items:center;gap:1rem">
+          <button onclick="changePpl(-1)" style="width:34px;height:34px;border-radius:50%;border:1px solid var(--borderg);background:var(--bg3);color:var(--primary);font-size:1.3rem;cursor:pointer;font-family:inherit;line-height:1">−</button>
+          <span id="ppl-n" style="font-size:1.3rem;font-weight:800;min-width:28px;text-align:center">1</span>
+          <button onclick="changePpl(1)" style="width:34px;height:34px;border-radius:50%;border:1px solid var(--borderg);background:var(--bg3);color:var(--primary);font-size:1.3rem;cursor:pointer;font-family:inherit;line-height:1">+</button>
+        </div>
+      </div>
+      <div class="form-g"><label>كود خصم (اختياري)</label>
+        <div style="display:flex;gap:.8rem">
+          <input type="text" id="bk-offer" placeholder="SUMMER25" style="flex:1;text-transform:uppercase">
+          <button class="btn-secondary btn-sm" onclick="validateOffer()">تحقق</button>
+        </div>
+      </div>
+      <div class="coins-toggle-box" id="coins-toggle-wrap" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><strong style="font-size:.88rem">استخدام Kiwi كوينات</strong><br><small style="color:var(--muted)" id="coins-avail-txt"></small></div>
+          <div class="toggle" id="coinsToggle" onclick="toggleCoins()"></div>
+        </div>
+        <div id="coins-disc-info" style="margin-top:.6rem;font-size:.8rem;color:var(--primary);display:none"></div>
+      </div>
+      <div class="form-g" style="margin-top:1.2rem"><label>طريقة الدفع</label>
+        <div style="display:flex;flex-direction:column;gap:.6rem" id="pay-methods-wrap">
+          <label style="display:flex;align-items:center;gap:.6rem;cursor:pointer;font-size:.85rem"><input type="radio" name="pay_method" value="vfCash" onclick="showPayInfo()" checked> فودافون كاش 🔴</label>
+          <label style="display:flex;align-items:center;gap:.6rem;cursor:pointer;font-size:.85rem"><input type="radio" name="pay_method" value="instapay" onclick="showPayInfo()"> انستا باي (InstaPay) 🟣</label>
+          <label style="display:flex;align-items:center;gap:.6rem;cursor:pointer;font-size:.85rem"><input type="radio" name="pay_method" value="fawry" onclick="showPayInfo()"> فوري 🟡</label>
+        </div>
+        <div id="pay-instructions" style="margin-top:.8rem;padding:1rem;background:var(--bg3);border-radius:10px;border:1px dashed var(--borderg);font-size:.82rem;color:var(--text);font-weight:700;text-align:center">برجاء تحويل المبلغ على <span id="pay-inst-txt">—</span></div>
+        <input type="text" id="bk-payment-proof" placeholder="اكتب رقم الموبايل المحول منه أو رقم الإيصال للإثبات" style="margin-top:.8rem;border-color:var(--primary);font-size:.82rem">
+      </div>
+      <div class="summary-box">
+        <div class="sum-row"><span>سعر الرحلة</span><span id="sum-price">—</span></div>
+        <div class="sum-row" id="sum-disc-row" style="display:none"><span>خصم الكوبون</span><span class="sum-green" id="sum-disc">—</span></div>
+        <div class="sum-row"><span>خصم الكوينات</span><span class="sum-green" id="sum-coins-disc">0 EGP</span></div>
+        <div class="sum-row"><span>الإجمالي</span><span id="sum-total">—</span></div>
+        <div class="sum-row" style="color:var(--primary)"><span>ستكسب</span><span id="sum-earn">—</span></div>
+      </div>
+      <button class="btn-submit" onclick="confirmBooking()">✅ تأكيد الحجز</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS -->
+<div class="overlay" id="successModal">
+  <div class="modal">
+    <div class="modal-hd"><h3>🎉 تم الحجز!</h3><button class="close-btn" onclick="closeModal('successModal')">✕</button></div>
+    <div class="success-modal">
+      <div class="success-icon">🎊</div>
+      <h3 style="font-size:1.4rem;font-weight:800;margin-bottom:.5rem">الحجز اتأكد!</h3>
+      <p style="color:var(--muted);margin-bottom:.8rem">هيوصلك تأكيد قريباً</p>
+      <div class="coins-earned-box"><div class="amount" id="earned-coins">+0 🪙</div><label style="font-size:.82rem;color:var(--muted);display:block">كوينات أضيفت لحسابك</label></div>
+      <p style="font-size:.82rem;color:var(--muted);margin-top:.8rem">رصيدك الجديد: <strong style="color:var(--primary)" id="new-bal">0</strong></p>
+      <button class="btn-submit" style="margin-top:1.2rem" onclick="closeModal('successModal')">رائع! 🥝</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div class="overlay" id="profileModal">
+  <div class="modal">
+    <div class="modal-hd"><h3>👤 بروفايلي</h3><button class="close-btn" onclick="closeModal('profileModal')">✕</button></div>
+    <div class="modal-body">
+      <div style="text-align:center;padding:1rem 0 .5rem">
+        <div class="profile-av-wrap">
+          <div class="profile-av" id="profile-av-display" onclick="document.getElementById('av-input').click()">🥝</div>
+          <div class="av-edit-btn" onclick="document.getElementById('av-input').click()">📷</div>
+        </div>
+        <input type="file" id="av-input" accept="image/*" style="display:none" onchange="handleAvatar(event)">
+        <div style="font-size:1.1rem;font-weight:800;margin-top:.6rem" id="prof-name-display">—</div>
+        <div class="tier-badge-sm" style="margin-top:.4rem" id="prof-tier-display">🥉 برونزي</div>
+      </div>
+      <div class="p-stat-grid">
+        <div class="p-stat"><div class="p-stat-n" id="ps-trips">0</div><div style="font-size:.72rem;color:var(--muted)">رحلات</div></div>
+        <div class="p-stat"><div class="p-stat-n" id="ps-coins-prof">0</div><div style="font-size:.72rem;color:var(--muted)">كوين</div></div>
+        <div class="p-stat"><div class="p-stat-n">4.9⭐</div><div style="font-size:.72rem;color:var(--muted)">تقييمك</div></div>
+      </div>
+      <div class="profile-tabs">
+        <button class="ptab active" onclick="switchPTab('info',this)">معلوماتي</button>
+        <button class="ptab" onclick="switchPTab('history',this)">الكوينات</button>
+        <button class="ptab" onclick="switchPTab('settings-p',this)">الإعدادات</button>
+      </div>
+      <div class="ppanel active" id="pp-info">
+        <div class="form-g"><label>الاسم</label><input type="text" id="pf-name"></div>
+        <div class="form-g"><label>الموبايل</label><input type="tel" id="pf-phone" readonly style="opacity:.6"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+          <div class="form-g"><label>العمر</label><input type="number" id="pf-age" min="1" max="120"></div>
+          <div class="form-g"><label>المدينة</label><input type="text" id="pf-city"></div>
+        </div>
+        <button class="btn-submit" onclick="saveProfile()">💾 حفظ</button>
+      </div>
+      <div class="ppanel" id="pp-history">
+        <div id="coin-hist-list" style="max-height:280px;overflow-y:auto"></div>
+      </div>
+      <div class="ppanel" id="pp-settings-p">
+        <div class="sw-row"><div><strong style="font-size:.88rem">إشعارات الحجز</strong><br><span style="font-size:.75rem;color:var(--muted)">تأكيدات وتذكيرات</span></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="sw-row"><div><strong style="font-size:.88rem">العروض</strong><br><span style="font-size:.75rem;color:var(--muted)">خصومات حصرية</span></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+        <button class="btn-submit btn-danger" style="margin-top:1rem" onclick="signOut()">🚪 تسجيل الخروج</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+<div class="overlay" id="settingsModal">
+  <div class="modal">
+    <div class="modal-hd"><h3>⚙️ الإعدادات</h3><button class="close-btn" onclick="closeModal('settingsModal')">✕</button></div>
+    <div class="modal-body">
+      <div style="margin-bottom:1.5rem">
+        <h4 style="font-size:.82rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.8rem">🎨 الثيم</h4>
+        <div class="theme-opts">
+          <button class="theme-opt" onclick="setTheme('dark',this)"><span style="font-size:1.2rem;display:block;margin-bottom:.2rem">🌙</span>داكن</button>
+          <button class="theme-opt" onclick="setTheme('light',this)"><span style="font-size:1.2rem;display:block;margin-bottom:.2rem">☀️</span>فاتح</button>
+          <button class="theme-opt" onclick="setTheme('night',this)"><span style="font-size:1.2rem;display:block;margin-bottom:.2rem">🌌</span>ليلي</button>
+          <button class="theme-opt active" onclick="setTheme('kiwi',this)"><span style="font-size:1.2rem;display:block;margin-bottom:.2rem">🥝</span>Kiwi</button>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-size:.82rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.8rem">🌍 اللغة</h4>
+        <div class="lang-opts">
+          <button class="lang-opt active" onclick="setLang('ar',this)"><span class="lang-flag">🇪🇬</span>العربية</button>
+          <button class="lang-opt" onclick="setLang('en',this)"><span class="lang-flag">🇬🇧</span>English</button>
+          <button class="lang-opt" onclick="setLang('de',this)"><span class="lang-flag">🇩🇪</span>Deutsch</button>
+          <button class="lang-opt" onclick="setLang('es',this)"><span class="lang-flag">🇪🇸</span>Español</button>
+          <button class="lang-opt" onclick="setLang('it',this)"><span class="lang-flag">🇮🇹</span>Italiano</button>
+          <button class="lang-opt" onclick="setLang('fr',this)"><span class="lang-flag">🇫🇷</span>Français</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WALLET -->
+<div class="overlay" id="walletModal">
+  <div class="modal">
+    <div class="modal-hd"><h3>💼 Kiwi محفظتي</h3><button class="close-btn" onclick="closeModal('walletModal')">✕</button></div>
+    <div class="modal-body">
+      <div style="background:linear-gradient(135deg,var(--kiwi6),var(--primary-dark),var(--bg2));border:1px solid var(--borderg);border-radius:18px;padding:1.5rem;margin-bottom:1.2rem">
+        <div style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.4rem">رصيد Kiwi كوينات</div>
+        <div style="font-size:3.5rem;font-weight:900;color:var(--kiwi5);line-height:1;font-family:'Bebas Neue',sans-serif" id="wal-coins-display">0</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.5);margin-top:.3rem" id="wal-eq-display">= 0 EGP خصم</div>
+        <div style="margin-top:1.2rem">
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:.5rem">
+            <span id="wal-prog-lbl">التقدم للمستوى التالي</span><span id="wal-prog-num">0 / 1000</span>
+          </div>
+          <div style="height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden">
+            <div id="wal-prog-bar" style="height:100%;background:var(--primary);border-radius:3px;width:0%;transition:width 1s ease"></div>
+          </div>
+        </div>
+      </div>
+      <h4 style="font-size:.88rem;font-weight:700;margin-bottom:.8rem">آخر المعاملات</h4>
+      <div id="wal-hist" style="max-height:250px;overflow-y:auto"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div class="overlay" id="adminLoginModal">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-hd"><h3>🔐 Kiwi Admin</h3><button class="close-btn" onclick="closeModal('adminLoginModal')">✕</button></div>
+    <div class="modal-body">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:4px;background:linear-gradient(135deg,var(--primary),var(--kiwi5));-webkit-background-clip:text;-webkit-text-fill-color:transparent">KIWI ADMIN</div>
+        <p style="font-size:.82rem;color:var(--muted)">لوحة التحكم الإدارية</p>
+      </div>
+      <div id="admin-err" style="display:none;background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);color:var(--coral);border-radius:10px;padding:.7rem;font-size:.82rem;margin-bottom:1rem"></div>
+      <div id="admin-step1">
+        <div class="form-g"><label>اسم المستخدم</label><input type="text" id="adm-email" value="kiwi"></div>
+        <div class="form-g"><label>كلمة المرور</label><input type="password" id="adm-pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')tryAdminLogin()"></div>
+        <p style="font-size:.72rem;color:var(--muted);margin-bottom:.8rem">🔐 التحقق بخطوتين: كود التجربة <strong style="color:var(--primary)">123456</strong></p>
+        <button class="btn-submit" onclick="tryAdminLogin()">التالي ←</button>
+      </div>
+      <div id="admin-step2" style="display:none">
+        <p style="color:var(--muted);font-size:.85rem;margin-bottom:1rem;text-align:center">أدخل كود التحقق</p>
+        <div class="otp-wrap">
+          <input type="text" class="otp-in" maxlength="1" id="ao1" oninput="otpMove(this,'ao2')">
+          <input type="text" class="otp-in" maxlength="1" id="ao2" oninput="otpMove(this,'ao3')">
+          <input type="text" class="otp-in" maxlength="1" id="ao3" oninput="otpMove(this,'ao4')">
+          <input type="text" class="otp-in" maxlength="1" id="ao4" oninput="otpMove(this,'ao5')">
+          <input type="text" class="otp-in" maxlength="1" id="ao5" oninput="otpMove(this,'ao6')">
+          <input type="text" class="otp-in" maxlength="1" id="ao6" oninput="otpMove(this,null)">
+        </div>
+        <button class="btn-submit" onclick="verifyAdminOTP()">🚀 دخول</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRIP FORM (Admin) -->
+<div class="overlay" id="tripFormModal">
+  <div class="modal wide">
+    <div class="modal-hd"><h3 id="trip-form-title">➕ رحلة جديدة</h3><button class="close-btn" onclick="closeModal('tripFormModal')">✕</button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-g full">
+          <label>صورة الرحلة</label>
+          <div class="img-upload-area" onclick="document.getElementById('trip-img-input').click()">
+            <div style="font-size:2rem;margin-bottom:.5rem">🖼️</div>
+            <div style="font-size:.88rem;font-weight:700;margin-bottom:.3rem" id="upload-lbl">اضغط لرفع صورة</div>
+            <div style="font-size:.75rem;color:var(--muted)">PNG, JPG حتى 5MB</div>
+            <img id="trip-img-preview" src="" alt="" class="img-preview-show">
+          </div>
+          <input type="file" id="trip-img-input" accept="image/*" style="display:none" onchange="handleTripImg(event)">
+          <input type="hidden" id="tf-img">
+        </div>
+        <div class="form-g full"><label>اسم الرحلة (عربي) *</label><input type="text" id="tf-name-ar"></div>
+        <div class="form-g full"><label>اسم الرحلة (إنجليزي)</label><input type="text" id="tf-name-en"></div>
+        <div class="form-g"><label>الموقع (عربي) *</label><input type="text" id="tf-loc-ar"></div>
+        <div class="form-g"><label>الموقع (إنجليزي)</label><input type="text" id="tf-loc-en"></div>
+        <div class="form-g full"><label>رابط فيديو للرحلة (YouTube أو غيره)</label><input type="url" id="tf-video" placeholder="https://youtube.com/... أو mp4"></div>
+        <div class="form-g"><label>السعر (EGP) *</label><input type="number" id="tf-price"></div>
+        <div class="form-g"><label>السعر القديم</label><input type="number" id="tf-old-price"></div>
+        <div class="form-g"><label>الأيام</label><input type="number" id="tf-days" min="1"></div>
+        <div class="form-g"><label>الكوينات المكتسبة</label><input type="number" id="tf-coins"></div>
+        <div class="form-g"><label>أدنى أفراد</label><input type="number" id="tf-min" value="2" min="1"></div>
+        <div class="form-g"><label>أقصى أفراد</label><input type="number" id="tf-max" value="10"></div>
+        <div class="form-g"><label>وقت الانطلاق</label><input type="time" id="tf-dep"></div>
+        <div class="form-g"><label>وسيلة التنقل</label><input type="text" id="tf-transport"></div>
+        <div class="form-g"><label>اسم الفندق/المنتجع</label><input type="text" id="tf-hotel" placeholder="مثال: ريكسوس شرم الشيخ"></div>
+        <div class="form-g"><label>موقع الفندق</label><input type="text" id="tf-hotel-loc"></div>
+        <div class="form-g full"><label>مسار الرحلة (مفصول بفاصلة)</label><input type="text" id="tf-route" placeholder="القاهرة, العين السخنة, شرم الشيخ"></div>
+        <div class="form-g full"><label>أماكن الاستراحة (مفصول بفاصلة)</label><input type="text" id="tf-stops" placeholder="استراحة الزعفرانة, استراحة الطور"></div>
+        <div class="form-g"><label>Badge (اختياري)</label><input type="text" id="tf-badge" placeholder="الأكثر حجزاً / جديد"></div>
+        <div class="form-g"><label>إيموجي</label><input type="text" id="tf-emoji" value="✈️" maxlength="2"></div>
+        <div class="form-g full">
+          <label>لون البطاقة</label>
+          <div class="color-grid" id="color-grid"></div>
+          <input type="hidden" id="tf-color">
+        </div>
+      </div>
+      <button class="btn-submit" onclick="saveTrip()">💾 حفظ الرحلة على Firebase</button>
+    </div>
+  </div>
+</div>
+
+<!-- EVENT FORM -->
+<div class="overlay" id="eventFormModal">
+  <div class="modal">
+    <div class="modal-hd"><h3 id="event-form-title">➕ فعالية جديدة</h3><button class="close-btn" onclick="closeModal('eventFormModal')">✕</button></div>
+    <div class="modal-body">
+      <div class="form-g"><label>العنوان *</label><input type="text" id="ef-title"></div>
+      <div class="form-g"><label>الوصف</label><textarea id="ef-desc"></textarea></div>
+      <div class="form-g"><label>النوع</label>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <button class="btn-filt active" onclick="selEventType('offer',this)">🎁 عرض</button>
+          <button class="btn-filt" onclick="selEventType('event',this)">📅 فعالية</button>
+          <button class="btn-filt" onclick="selEventType('news',this)">📢 خبر</button>
+          <button class="btn-filt" onclick="selEventType('promo',this)">📣 إعلان</button>
+        </div>
+        <input type="hidden" id="ef-type" value="offer">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+        <div class="form-g"><label>بداية</label><input type="date" id="ef-start"></div>
+        <div class="form-g"><label>نهاية</label><input type="date" id="ef-end"></div>
+      </div>
+      <div class="form-g"><label>كود الخصم</label><input type="text" id="ef-code" style="text-transform:uppercase"></div>
+      <div class="form-g"><label>نسبة الخصم %</label><input type="number" id="ef-discount"></div>
+      <button class="btn-submit" onclick="saveEvent()">💾 حفظ على Firebase</button>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM FORM -->
+<div class="overlay" id="teamFormModal">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-hd"><h3 id="team-form-title">➕ عضو جديد</h3><button class="close-btn" onclick="closeModal('teamFormModal')">✕</button></div>
+    <div class="modal-body">
+      <div class="form-g"><label>الاسم *</label><input type="text" id="tm-name"></div>
+      <div class="form-g"><label>المنصب</label><input type="text" id="tm-role" placeholder="مثال: مدير التواصل"></div>
+      <div class="form-g"><label>رقم الواتساب *</label><input type="tel" id="tm-phone" placeholder="201118586503"></div>
+      <div class="form-g"><label>الإيميل *</label><input type="email" id="tm-email" placeholder="example@gmail.com"></div>
+      <div class="form-g"><label>إيموجي الأفاتار</label><input type="text" id="tm-emoji" value="👨‍💼" maxlength="2"></div>
+      <button class="btn-submit" onclick="saveTeamMember()">💾 حفظ</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div id="toast-icon" style="font-size:1.3rem">✅</div>
+  <div><p id="toast-msg" style="font-size:.88rem;font-weight:700"></p><span id="toast-sub" style="font-size:.75rem;color:var(--muted)"></span></div>
+</div>
+
+<!-- FIREBASE + APP SCRIPT -->
+
+<script>
+// ════ PRE-STUB: ensures onclick= works before module loads ════
+// These get replaced by real implementations after Firebase module loads
+(function(){
+  var fns=['setTheme','setLang','openModal','closeModal','signOut','sendOTP','verifyOTP',
+    'showPhoneStep','completeProfile','saveProfile','handleAvatar','switchPTab',
+    'openWalletModal','openTripDetail','switchDTab','openBookingFromDetail',
+    'changePpl','toggleCoins','validateOffer','confirmBooking','sendContact',
+    'tryAdminLogin','verifyAdminOTP','exitAdmin','adminLogout','adminPage',
+    'openTripForm','editTrip','deleteTrip','handleTripImg','saveTrip',
+    'openEventForm','editEvent','saveEvent','deleteEvent','selEventType',
+    'openTeamForm','saveTeamMember','deleteTeamMember','saveSettings',
+    'filterTripsUI','loadBookings','updateBookingStatus','filterUsers',
+    'filterAdminTrips','giveCoins','selColor','otpMove','showToast',
+    'openProfileOrLogin'];
+  fns.forEach(function(fn){
+    if(!window[fn]) window[fn]=function(){console.log('Loading...'+fn);};
+  });
+})();
+</script>
+
+<script type="module">
+// ════════════════════════════════════════════════
+//  FIREBASE CONFIG
+// ════════════════════════════════════════════════
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, doc, getDocs, getDoc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot, serverTimestamp, query, orderBy, limit }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged, signOut as fbSignOut }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getStorage, ref, uploadString, getDownloadURL }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+
+import { firebaseConfig } from "./js/firebase-config.js";
+
+
+const app     = initializeApp(firebaseConfig);
+const db      = getFirestore(app);
+const auth    = getAuth(app);
+const storage = getStorage(app);
+
+// ════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════
+let STATE = {
+  user: null,     // Firebase Auth user
+  profile: null,  // Firestore user profile
+  coins: 0,
+  tier: 'bronze',
+  trips: [],
+  selectedTrip: null,
+  useCoins: false,
+  offerDiscount: 0,
+  pplCount: 1,
+  editingTripId: null,
+  editingEventId: null,
+  editingTeamId: null,
+  adminLoggedIn: false,
+  adminStep: 1,
+  confirmationResult: null,
+  selectedColor: 'linear-gradient(135deg,#2E7D32,#8BC34A)',
+  selectedEventType: 'offer',
+  lang: localStorage.getItem('kiwi_lang') || 'ar',
+  theme: localStorage.getItem('kiwi_theme') || 'kiwi',
+};
+
+// ════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', async () => {
+  applyTheme(STATE.theme);
+  applyLang(STATE.lang);
+  buildColorGrid();
+  initSearchTabs();
+  startAdminClock();
+  listenTrips();
+  listenTeam();
+  listenLeaderboard();
+  listenSettings();
+
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      STATE.user = user;
+      const profRef = doc(db, 'users', user.uid);
+      const profSnap = await getDoc(profRef);
+      if (profSnap.exists()) {
+        STATE.profile = profSnap.data();
+        STATE.coins   = STATE.profile.coins || 0;
+        STATE.tier    = STATE.profile.tier  || 'bronze';
+        updateNavUser();
+      } else {
+        // New user — show profile completion
+        document.getElementById('login-phone-step').style.display = 'none';
+        document.getElementById('login-otp-step').style.display   = 'none';
+        document.getElementById('login-profile-step').style.display = 'block';
+        openModal('loginModal');
+      }
+    } else {
+      STATE.user = null; STATE.profile = null; STATE.coins = 0;
+      updateNavUser();
+    }
+  });
+
+  if(window.location.hash === '#admin') {
+    setTimeout(() => openModal('adminLoginModal'), 500);
+  }
+});
+
+// ════════════════════════════════════════════════
+//  REAL-TIME LISTENERS
+// ════════════════════════════════════════════════
+function listenTrips() {
+  const q = query(collection(db, 'trips'), orderBy('createdAt', 'desc'));
+  onSnapshot(q, snap => {
+    STATE.trips = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderTrips();
+    document.getElementById('stat-trips-n').textContent = '+' + STATE.trips.length;
+    if (STATE.adminLoggedIn) renderAdminTripsTable();
+  });
+}
+
+function listenTeam() {
+  onSnapshot(collection(db, 'team'), snap => {
+    const members = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderTeamSection(members);
+    if (STATE.adminLoggedIn) renderTeamAdmin(members);
+  });
+}
+
+function listenLeaderboard() {
+  const q = query(collection(db, 'users'), orderBy('coins', 'desc'), limit(10));
+  onSnapshot(q, snap => {
+    const users = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderLeaderboard(users);
+    document.getElementById('stat-users-n').textContent = '+' + snap.size * 3 + 'K'; // approx
+    if (STATE.adminLoggedIn) {
+      renderUsersTable(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+      renderCoinsLeaderboard(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+      populateCoinsUserSelect(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    }
+  });
+}
+
+// ════════════════════════════════════════════════
+//  TRIPS RENDER
+// ════════════════════════════════════════════════
+function renderTrips() {
+  const grid = document.getElementById('tripsGrid');
+  const q    = document.getElementById('search-dest').value.toLowerCase();
+  const data = q ? STATE.trips.filter(t => t.name_ar?.toLowerCase().includes(q) || t.location_ar?.toLowerCase().includes(q)) : STATE.trips;
+
+  if (!data.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted)"><div style="font-size:3rem;margin-bottom:.8rem">🔭</div><p>مفيش رحلات بعد — الأدمن هيضيف قريباً</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = data.map(t => `
+    <div class="trip-card" onclick="openTripDetail('${t.id}')">
+      <div class="trip-img" style="background:${t.color||'linear-gradient(135deg,#2E7D32,#8BC34A)'}">
+        ${t.img ? `<img src="${t.img}" alt="${t.name_ar}">` : ''}
+        <div class="trip-img-bg">${t.emoji||'✈️'}</div>
+        ${t.badge ? `<div class="trip-badge">${t.badge}</div>` : ''}
+        <div class="trip-coins">🪙 +${t.coins_earn||0}</div>
+      </div>
+      <div class="trip-body">
+        <div class="trip-loc">📍 ${t.location_ar||''}</div>
+        <div class="trip-name">${t.name_ar||''}</div>
+        <div class="trip-meta">
+          <span>📅 ${t.days||0} أيام</span>
+          <span>👥 ${t.min_people||2}-${t.max_people||10}</span>
+          <span>⭐ 4.8</span>
+        </div>
+        <div class="trip-foot">
+          <div class="trip-price">
+            ${t.old_price ? `<div class="old">${t.old_price.toLocaleString()} EGP</div>` : ''}
+            <span class="new">${(t.price||0).toLocaleString()}</span> <span style="font-size:.75rem;color:var(--muted)">EGP</span>
+          </div>
+          <button class="btn-primary btn-sm" onclick="event.stopPropagation();openTripDetail('${t.id}')">احجز</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+window.filterTripsUI = function() { renderTrips(); };
+
+// ════════════════════════════════════════════════
+//  LEADERBOARD
+// ════════════════════════════════════════════════
+function renderLeaderboard(users) {
+  const grid = document.getElementById('leaderboard-grid');
+  if (!users.length) { grid.innerHTML = '<p style="text-align:center;color:var(--muted);padding:2rem">لا يوجد مستخدمين بعد</p>'; return; }
+  grid.innerHTML = users.slice(0,8).map((u, i) => `
+    <div class="lb-item">
+      <div class="lb-rank ${i===0?'r1':i===1?'r2':i===2?'r3':''}">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</div>
+      <div class="lb-av">
+        ${u.avatar ? `<img src="${u.avatar}" alt="">` : `<span style="font-size:1.2rem">🥝</span>`}
+      </div>
+      <div class="lb-info">
+        <div class="lb-name">${u.name||'مجهول'}</div>
+        <div class="lb-city">${u.city||''}</div>
+      </div>
+      <div class="lb-coins">🪙 ${(u.coins||0).toLocaleString()}</div>
+    </div>`).join('');
+}
+
+// ════════════════════════════════════════════════
+//  TEAM SECTION
+// ════════════════════════════════════════════════
+function renderTeamSection(members) {
+  const list = document.getElementById('team-members-list');
+  const footer = document.getElementById('footer-contacts');
+  if (!members || !members.length) {
+    members = [{
+      name: 'Ahmed Amr Mohamed',
+      role: 'المؤسس (Founder)',
+      phone: '01113875335',
+      email: 'ahmedelbadryyyy@gmail.com',
+      emoji: '👨‍💼'
+    }];
+  }
+  list.innerHTML = members.map(m => `
+    <div class="team-member" onclick="window.open('https://wa.me/${m.phone}','_blank')">
+      <div class="member-av">${m.emoji||'👨‍💼'}</div>
+      <div>
+        <div style="font-weight:700;font-size:.95rem">${m.name||''}</div>
+        <div style="font-size:.75rem;color:var(--primary)">${m.role||''}</div>
+      </div>
+      <div style="margin-inline-start:auto;display:flex;gap:.6rem">
+        ${m.phone ? `<a href="https://wa.me/${m.phone}" target="_blank" onclick="event.stopPropagation()" style="background:rgba(var(--primary-rgb),.1);border:1px solid var(--borderg);border-radius:8px;padding:.3rem .7rem;font-size:.78rem;color:var(--primary);text-decoration:none">📱 واتساب</a>` : ''}
+        ${m.email ? `<a href="mailto:${m.email}" target="_blank" onclick="event.stopPropagation()" style="background:rgba(var(--primary-rgb),.1);border:1px solid var(--borderg);border-radius:8px;padding:.3rem .7rem;font-size:.78rem;color:var(--primary);text-decoration:none">✉️ إيميل</a>` : ''}
+      </div>
+    </div>`).join('');
+
+  if (footer) {
+    footer.innerHTML = members.map(m => `
+      <li>${m.phone ? `<a href="https://wa.me/${m.phone}" target="_blank">📱 ${m.name}</a>` : ''}</li>
+      <li>${m.email ? `<a href="mailto:${m.email}">✉️ ${m.email}</a>` : ''}</li>`).join('');
+  }
+}
+
+// ════════════════════════════════════════════════
+//  LOGIN (Phone OTP)
+// ════════════════════════════════════════════════
+window.sendOTP = async function() {
+  const phone = document.getElementById('phone-code').value + document.getElementById('phone-input').value.replace(/^0/, '');
+  if (!phone || phone.length < 10) { showToast('⚠️ أدخل رقم موبايل صحيح',''); return; }
+
+  document.getElementById('btn-send-otp').innerHTML = '<span class="spinner"></span>';
+
+  try {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', { size: 'invisible' });
+    }
+    STATE.confirmationResult = await signInWithPhoneNumber(auth, phone, window.recaptchaVerifier);
+    document.getElementById('otp-phone-display').textContent = phone;
+    showOTPStep();
+    showToast('✅ تم الإرسال', 'تحقق من رسائلك');
+  } catch (e) {
+    console.error(e);
+    showToast('❌ خطأ', e.message);
+    document.getElementById('btn-send-otp').innerHTML = '📤 إرسال كود التحقق';
+  }
+};
+
+function showOTPStep() {
+  document.getElementById('login-phone-step').style.display = 'none';
+  document.getElementById('login-otp-step').style.display   = 'block';
+}
+
+window.showPhoneStep = function() {
+  document.getElementById('login-phone-step').style.display = 'block';
+  document.getElementById('login-otp-step').style.display   = 'none';
+};
+
+window.verifyOTP = async function() {
+  const otp = ['o1','o2','o3','o4','o5','o6'].map(i => document.getElementById(i).value).join('');
+  if (otp.length < 6) { showToast('⚠️','أدخل الكود كاملاً'); return; }
+  document.getElementById('btn-verify-otp').innerHTML = '<span class="spinner"></span>';
+  try {
+    await STATE.confirmationResult.confirm(otp);
+    closeModal('loginModal');
+    showToast('✅ تم تسجيل الدخول!', 'مرحباً بك في Kiwi');
+  } catch (e) {
+    showToast('❌ كود غلط', 'حاول تاني');
+    document.getElementById('btn-verify-otp').innerHTML = '✅ تأكيد الكود';
+  }
+};
+
+window.completeProfile = async function() {
+  const name = document.getElementById('new-user-name').value;
+  if (!name) { showToast('⚠️','ادخل اسمك'); return; }
+  const profData = {
+    name,
+    age:   parseInt(document.getElementById('new-user-age').value) || null,
+    city:  document.getElementById('new-user-city').value || '',
+    phone: STATE.user?.phoneNumber || '',
+    coins: 0, tier: 'bronze', trips: 0,
+    createdAt: serverTimestamp(),
+    avatar: '',
+  };
+  await setDoc(doc(db, 'users', STATE.user.uid), profData);
+  STATE.profile = profData;
+  STATE.coins = 0;
+  updateNavUser();
+  closeModal('loginModal');
+  showToast('🥝 أهلاً ' + name + '!', 'حسابك اتعمل');
+};
+
+window.signOut = async function() {
+  await fbSignOut(auth);
+  STATE.user = null; STATE.profile = null; STATE.coins = 0;
+  updateNavUser();
+  closeModal('profileModal');
+  showToast('👋 تم الخروج', '');
+};
+
+function updateNavUser() {
+  const isLoggedIn = !!STATE.user && !!STATE.profile;
+  const signinBtn  = document.getElementById('btn-main-signin');
+  const coinBadge  = document.getElementById('nav-coin-badge');
+  const navAv      = document.getElementById('nav-avatar-btn');
+
+  if (isLoggedIn) {
+    signinBtn.style.display = 'none';
+    coinBadge.style.display = 'flex';
+    document.getElementById('nav-coins').textContent = STATE.coins.toLocaleString();
+    navAv.innerHTML = STATE.profile.avatar ?
+      `<img src="${STATE.profile.avatar}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">` :
+      STATE.profile.name?.charAt(0) || '🥝';
+  } else {
+    signinBtn.style.display = 'flex';
+    coinBadge.style.display = 'none';
+    navAv.innerHTML = '👤';
+  }
+}
+
+window.openProfileOrLogin = function() {
+  if (STATE.user && STATE.profile) openProfile();
+  else openModal('loginModal');
+};
+
+// ════════════════════════════════════════════════
+//  PROFILE
+// ════════════════════════════════════════════════
+function openProfile() {
+  const p = STATE.profile;
+  document.getElementById('prof-name-display').textContent = p.name || '—';
+  document.getElementById('prof-tier-display').textContent = STATE.tier==='gold'?'🥇 ذهبي':STATE.tier==='silver'?'🥈 فضي':'🥉 برونزي';
+  document.getElementById('pf-name').value  = p.name || '';
+  document.getElementById('pf-phone').value = p.phone || '';
+  document.getElementById('pf-age').value   = p.age || '';
+  document.getElementById('pf-city').value  = p.city || '';
+  document.getElementById('ps-trips').textContent     = p.trips || 0;
+  document.getElementById('ps-coins-prof').textContent = STATE.coins.toLocaleString();
+  if (p.avatar) document.getElementById('profile-av-display').innerHTML = `<img src="${p.avatar}" alt="">`;
+  switchPTab('info', document.querySelector('.ptab'));
+  openModal('profileModal');
+}
+
+window.saveProfile = async function() {
+  if (!STATE.user) return;
+  const upd = {
+    name: document.getElementById('pf-name').value || STATE.profile.name,
+    age:  parseInt(document.getElementById('pf-age').value) || null,
+    city: document.getElementById('pf-city').value || '',
+  };
+  await updateDoc(doc(db, 'users', STATE.user.uid), upd);
+  STATE.profile = { ...STATE.profile, ...upd };
+  document.getElementById('prof-name-display').textContent = upd.name;
+  updateNavUser();
+  showToast('✅ تم الحفظ', '');
+};
+
+window.handleAvatar = async function(e) {
+  const file = e.target.files[0]; if (!file || !STATE.user) return;
+  const reader = new FileReader();
+  reader.onload = async ev => {
+    const url = ev.target.result;
+    try {
+      const storageRef = ref(storage, `avatars/${STATE.user.uid}`);
+      await uploadString(storageRef, url, 'data_url');
+      const downloadURL = await getDownloadURL(storageRef);
+      await updateDoc(doc(db, 'users', STATE.user.uid), { avatar: downloadURL });
+      STATE.profile.avatar = downloadURL;
+      document.getElementById('profile-av-display').innerHTML = `<img src="${downloadURL}" alt="">`;
+      updateNavUser();
+      showToast('✅ تم رفع الصورة', '');
+    } catch {
+      // Fallback: store base64 directly (small images only)
+      await updateDoc(doc(db, 'users', STATE.user.uid), { avatar: url });
+      STATE.profile.avatar = url;
+      document.getElementById('profile-av-display').innerHTML = `<img src="${url}" alt="">`;
+      updateNavUser();
+    }
+  };
+  reader.readAsDataURL(file);
+};
+
+window.switchPTab = function(panel, el) {
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.ppanel').forEach(p => p.classList.remove('active'));
+  if(el) el.classList.add('active');
+  document.getElementById('pp-'+panel).classList.add('active');
+  if (panel === 'history') loadCoinHistory();
+};
+
+async function loadCoinHistory() {
+  if (!STATE.user) return;
+  const list = document.getElementById('coin-hist-list');
+  const q = query(collection(db, 'users', STATE.user.uid, 'coinHistory'), orderBy('createdAt', 'desc'), limit(20));
+  const snap = await getDocs(q);
+  if (snap.empty) { list.innerHTML = '<p style="color:var(--muted);text-align:center;padding:1rem">لا يوجد معاملات</p>'; return; }
+  list.innerHTML = snap.docs.map(d => {
+    const tx = d.data();
+    return `<div style="display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid var(--border);font-size:.83rem">
+      <div>
+        <div style="font-weight:600">${tx.reason||'—'}</div>
+        <div style="color:var(--muted);font-size:.72rem">${tx.createdAt?.toDate?.()?.toLocaleDateString('ar-EG')||'—'}</div>
+      </div>
+      <div style="font-weight:700;color:${tx.amount>0?'var(--primary)':'var(--coral)'}">${tx.amount>0?'+':''}${tx.amount} 🪙</div>
+    </div>`;
+  }).join('');
+}
+
+// ════════════════════════════════════════════════
+//  WALLET
+// ════════════════════════════════════════════════
+window.openWalletModal = function() {
+  document.getElementById('wal-coins-display').textContent = STATE.coins.toLocaleString();
+  document.getElementById('wal-eq-display').textContent = `= ${Math.floor(STATE.coins/100)*10} EGP خصم`;
+  const nextGoal = STATE.tier==='bronze'?1000:STATE.tier==='silver'?5000:STATE.coins;
+  const prog = STATE.tier==='gold'?100:Math.min(100,(STATE.coins/nextGoal)*100);
+  setTimeout(() => { document.getElementById('wal-prog-bar').style.width = prog+'%'; }, 200);
+  document.getElementById('wal-prog-num').textContent = `${STATE.coins.toLocaleString()} / ${nextGoal.toLocaleString()}`;
+  loadWalletHistory();
+  openModal('walletModal');
+};
+
+async function loadWalletHistory() {
+  if (!STATE.user) return;
+  const hist = document.getElementById('wal-hist');
+  const q = query(collection(db, 'users', STATE.user.uid, 'coinHistory'), orderBy('createdAt','desc'), limit(10));
+  const snap = await getDocs(q);
+  hist.innerHTML = snap.docs.map(d => {
+    const tx = d.data();
+    return `<div style="display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid var(--border);font-size:.83rem">
+      <span style="color:var(--muted)">${tx.reason||'—'}</span>
+      <span style="font-weight:700;color:${tx.amount>0?'var(--primary)':'var(--coral)'}">${tx.amount>0?'+':''}${tx.amount} 🪙</span>
+    </div>`;
+  }).join('') || '<p style="color:var(--muted);text-align:center;padding:1rem">لا يوجد معاملات</p>';
+}
+
+// ════════════════════════════════════════════════
+//  TRIP DETAIL
+// ════════════════════════════════════════════════
+window.openTripDetail = function(id) {
+  const trip = STATE.trips.find(t => t.id === id);
+  if (!trip) return;
+  STATE.selectedTrip = trip;
+
+  const heroBg  = document.getElementById('detail-hero-bg');
+  const heroImg = document.getElementById('detail-hero-img');
+  const heroVid = document.getElementById('detail-hero-vid');
+  heroBg.style.background = trip.color || 'var(--primary-grad)';
+  heroBg.textContent = trip.emoji || '✈️';
+  
+  heroImg.style.display = 'none';
+  if(heroVid) heroVid.style.display = 'none';
+
+  if (trip.video && heroVid) {
+    let vSrc = trip.video;
+    if (vSrc.includes('youtube.com/watch?v=')) { const vid = vSrc.split('v=')[1].split('&')[0]; vSrc = 'https://www.youtube.com/embed/'+vid+'?autoplay=1&mute=1&loop=1&playlist='+vid; }
+    else if (vSrc.includes('youtu.be/')) { const vid = vSrc.split('.be/')[1].split('?')[0]; vSrc = 'https://www.youtube.com/embed/'+vid+'?autoplay=1&mute=1&loop=1&playlist='+vid; }
+    heroVid.src = vSrc;
+    heroVid.style.display = 'block';
+  } else if (trip.img) { 
+    heroImg.src = trip.img; 
+    heroImg.style.display = 'block'; 
+  }
+
+  document.getElementById('detail-name').textContent = trip.name_ar || '';
+  document.getElementById('detail-loc').textContent  = '📍 ' + (trip.location_ar || '') + (trip.hotel ? ' — 🏨 ' + trip.hotel : '');
+
+  document.getElementById('detail-chips').innerHTML = [
+    `<div style="background:var(--bg3);border-radius:10px;padding:.55rem 1rem;font-size:.82rem;border:1px solid var(--border)">📅 ${trip.days||0} أيام</div>`,
+    `<div style="background:var(--bg3);border-radius:10px;padding:.55rem 1rem;font-size:.82rem;border:1px solid var(--border)">👥 ${trip.min_people||2}-${trip.max_people||10}</div>`,
+    `<div style="background:rgba(var(--primary-rgb),.1);border-radius:10px;padding:.55rem 1rem;font-size:.82rem;border:1px solid var(--borderg);color:var(--primary);font-weight:700">💰 ${(trip.price||0).toLocaleString()} EGP</div>`,
+    `<div style="background:rgba(var(--primary-rgb),.1);border-radius:10px;padding:.55rem 1rem;font-size:.82rem;border:1px solid var(--borderg);color:var(--primary)">🪙 +${trip.coins_earn||0}</div>`,
+  ].join('');
+
+  // Timeline
+  const tl = trip.timeline || [];
+  document.getElementById('dp-timeline').innerHTML = tl.length ? tl.map((item,i) => `
+    <div class="tl-item">
+      <div class="tl-time">${item.time||''}</div>
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div class="tl-dot"></div>
+        ${i<tl.length-1?`<div style="width:1px;flex:1;background:rgba(var(--primary-rgb),.2);margin-top:4px"></div>`:''}
+      </div>
+      <div style="flex:1;background:var(--bg3);border-radius:12px;padding:.9rem 1rem;border:1px solid var(--border);margin-bottom:.5rem">
+        <strong style="font-size:.88rem">${item.title||''}</strong><br>
+        <small style="color:var(--muted)">${item.desc||''}</small>
+      </div>
+    </div>`).join('') : '<p style="color:var(--muted)">لا يوجد برنامج محدد</p>';
+
+  // Route & Stops
+  const route = trip.route || [];
+  const stops = trip.stops || [];
+  let routeHtml = '';
+  if (route.length) {
+    routeHtml += `<h4 style="font-size:.9rem;margin-bottom:.5rem">🗺️ مسار الرحلة</h4>
+    <div style="background:var(--bg3);border-radius:14px;padding:1rem;border:1px solid var(--border);margin-bottom:1rem">
+      ${route.map((s,i) => `<div style="display:flex;align-items:center;gap:.8rem;padding:.6rem 0;border-bottom:${i<route.length-1?'1px solid var(--border)':'none'}">
+        <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0">${i+1}</div>
+        <span style="font-size:.85rem">${s}</span>
+      </div>`).join('')}
+    </div>`;
+  }
+  if (stops.length) {
+    routeHtml += `<h4 style="font-size:.9rem;margin-bottom:.5rem">☕ أماكن الاستراحة</h4>
+    <div style="background:var(--bg3);border-radius:14px;padding:1rem;border:1px solid var(--border)">
+      ${stops.map(s => `<div style="display:flex;align-items:center;gap:.6rem;padding:.4rem 0">
+        <span style="color:var(--primary)">✓</span><span style="font-size:.82rem">${s}</span>
+      </div>`).join('')}
+    </div>`;
+  }
+  document.getElementById('dp-route').innerHTML = routeHtml || '<p style="color:var(--muted)">لا يوجد مسار محدد</p>';
+
+  // Includes
+  const inc = trip.includes || {};
+  document.getElementById('dp-includes').innerHTML = `
+    <p style="font-size:.82rem;font-weight:700;color:var(--primary);margin-bottom:.7rem">✅ يشمل</p>
+    <div class="includes-g">${(inc.yes||[]).map(i=>`<div class="inc-item inc-yes"><span style="color:var(--primary)">✓</span> ${i}</div>`).join('')}</div>
+    <p style="font-size:.82rem;font-weight:700;color:var(--coral);margin-top:1rem;margin-bottom:.7rem">❌ لا يشمل</p>
+    <div class="includes-g">${(inc.no||[]).map(i=>`<div class="inc-item inc-no"><span style="color:var(--coral)">✗</span> ${i}</div>`).join('')}</div>`;
+
+  document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.dpanel').forEach(p=>p.classList.remove('active'));
+  document.querySelector('.dtab').classList.add('active');
+  document.getElementById('dp-timeline').classList.add('active');
+
+  openModal('tripDetailModal');
+};
+
+window.switchDTab = function(panel, el) {
+  document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.dpanel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('dp-'+panel).classList.add('active');
+};
+
+window.openBookingFromDetail = function() {
+  closeModal('tripDetailModal');
+  openBookingModal();
+};
+
+// ════════════════════════════════════════════════
+//  BOOKING
+// ════════════════════════════════════════════════
+function openBookingModal() {
+  if (!STATE.user || !STATE.profile) { openModal('loginModal'); return; }
+  const trip = STATE.selectedTrip;
+  if (!trip) return;
+  STATE.useCoins = false; STATE.offerDiscount = 0; STATE.pplCount = 1;
+  document.getElementById('bk-thumb').textContent    = trip.emoji||'✈️';
+  document.getElementById('bk-name').textContent     = trip.name_ar||'';
+  document.getElementById('bk-price-show').textContent = `${(trip.price||0).toLocaleString()} EGP`;
+  document.getElementById('ppl-n').textContent       = '1';
+  document.getElementById('bk-offer').value          = '';
+  document.getElementById('coinsToggle').classList.remove('on');
+  document.getElementById('coins-disc-info').style.display = 'none';
+  document.getElementById('sum-disc-row').style.display = 'none';
+
+  const coinWrap = document.getElementById('coins-toggle-wrap');
+  coinWrap.style.display = STATE.coins >= 100 ? 'block' : 'none';
+  document.getElementById('coins-avail-txt').textContent = `رصيدك: ${STATE.coins} كوين = خصم ${Math.floor(STATE.coins/100)*10} EGP`;
+
+  updateBookingSummary();
+  openModal('bookingModal');
+}
+
+window.changePpl = function(d) {
+  const max = STATE.selectedTrip?.max_people || 10;
+  STATE.pplCount = Math.max(1, Math.min(max, STATE.pplCount + d));
+  document.getElementById('ppl-n').textContent = STATE.pplCount;
+  updateBookingSummary();
+};
+
+window.toggleCoins = function() {
+  STATE.useCoins = !STATE.useCoins;
+  document.getElementById('coinsToggle').classList.toggle('on', STATE.useCoins);
+  document.getElementById('coins-disc-info').style.display = STATE.useCoins ? 'block' : 'none';
+  if (STATE.useCoins) document.getElementById('coins-disc-info').textContent = `✅ سيتم خصم ${Math.floor(STATE.coins/100)*10} EGP`;
+  updateBookingSummary();
+};
+
+window.validateOffer = async function() {
+  const code = document.getElementById('bk-offer').value.toUpperCase();
+  if (!code) return;
+  const snap = await getDocs(collection(db, 'events'));
+  const ev = snap.docs.map(d=>d.data()).find(e=>e.code===code && e.active && e.discount);
+  if (!ev) { showToast('❌ الكود غير صالح',''); STATE.offerDiscount=0; return; }
+  const base = (STATE.selectedTrip?.price||0) * STATE.pplCount;
+  STATE.offerDiscount = Math.floor(base * ev.discount / 100);
+  document.getElementById('sum-disc-row').style.display='flex';
+  document.getElementById('sum-disc').textContent = `-${STATE.offerDiscount} EGP`;
+  updateBookingSummary();
+  showToast('✅ كود صالح', `خصم ${STATE.offerDiscount} EGP`);
+};
+
+function updateBookingSummary() {
+  const trip     = STATE.selectedTrip;
+  if (!trip) return;
+  const base     = trip.price * STATE.pplCount;
+  const coinDisc = STATE.useCoins ? Math.floor(STATE.coins/100)*10 : 0;
+  const total    = Math.max(0, base - STATE.offerDiscount - coinDisc);
+  const earn     = Math.floor(total/100)*10;
+  document.getElementById('sum-price').textContent      = `${base.toLocaleString()} EGP`;
+  document.getElementById('sum-coins-disc').textContent = coinDisc>0 ? `-${coinDisc} EGP` : '0 EGP';
+  document.getElementById('sum-total').textContent      = `${total.toLocaleString()} EGP`;
+  document.getElementById('sum-earn').textContent       = `🪙 +${earn}`;
+}
+
+window.confirmBooking = async function() {
+  const date = document.getElementById('bk-date').value;
+  const proof = document.getElementById('bk-payment-proof').value;
+  if (!date) { showToast('⚠️ اختار تاريخ السفر',''); return; }
+  if (!proof) { showToast('⚠️ يرجى كتابة إثبات الدفع (الرقم المحول منه أو الإيصال)',''); return; }
+  const pMethod = document.querySelector('input[name="pay_method"]:checked')?.value || 'vfCash';
+  const trip     = STATE.selectedTrip;
+  const base     = trip.price * STATE.pplCount;
+  const coinDisc = STATE.useCoins ? Math.floor(STATE.coins/100)*10 : 0;
+  const total    = Math.max(0, base - STATE.offerDiscount - coinDisc);
+  const earned   = Math.floor(total/100)*10;
+  const usedCoins= STATE.useCoins ? STATE.coins : 0;
+
+  const newCoins = STATE.coins - usedCoins + earned;
+  const newTier  = newCoins>=5000?'gold':newCoins>=1000?'silver':'bronze';
+
+  // Save booking
+  const bkRef = await addDoc(collection(db, 'bookings'), {
+    userId: STATE.user.uid, userName: STATE.profile.name,
+    userPhone: STATE.profile.phone,
+    tripId: trip.id, tripName: trip.name_ar,
+    travelDate: date, peopleCount: STATE.pplCount,
+    totalPrice: total, originalPrice: base,
+    coinsEarned: earned, coinsUsed: usedCoins,
+    discount: STATE.offerDiscount,
+    paymentMethod: pMethod, paymentProof: proof,
+    status: 'pending', paymentStatus: 'pending',
+    createdAt: serverTimestamp(),
+  });
+
+  // Update user coins
+  await updateDoc(doc(db, 'users', STATE.user.uid), { coins: newCoins, tier: newTier, trips: (STATE.profile.trips||0)+1 });
+
+  // Log coin transaction
+  await addDoc(collection(db, 'users', STATE.user.uid, 'coinHistory'), {
+    type: 'earn', amount: earned,
+    reason: `حجز رحلة: ${trip.name_ar}`,
+    balance: newCoins, createdAt: serverTimestamp(),
+  });
+  if (usedCoins > 0) {
+    await addDoc(collection(db, 'users', STATE.user.uid, 'coinHistory'), {
+      type: 'spend', amount: -usedCoins,
+      reason: 'استخدام كوينات للخصم',
+      balance: newCoins - earned, createdAt: serverTimestamp(),
+    });
+  }
+
+  STATE.coins = newCoins; STATE.tier = newTier;
+  STATE.profile = { ...STATE.profile, coins: newCoins, tier: newTier };
+  document.getElementById('nav-coins').textContent = newCoins.toLocaleString();
+  closeModal('bookingModal');
+  document.getElementById('earned-coins').textContent = `+${earned} 🪙`;
+  document.getElementById('new-bal').textContent = `${newCoins.toLocaleString()} كوين`;
+  openModal('successModal');
+};
+
+// ════════════════════════════════════════════════
+//  CONTACT
+// ════════════════════════════════════════════════
+window.sendContact = function() {
+  const name = document.getElementById('cf-name').value;
+  const msg  = document.getElementById('cf-msg').value;
+  if (!name || !msg) { showToast('⚠️ اكتب اسمك ورسالتك',''); return; }
+  const phone = document.getElementById('cf-phone').value;
+  const text  = `*رسالة من Kiwi Tourism*%0A👤 ${name}%0A📱 ${phone}%0A💬 ${msg}`;
+  window.open(`https://wa.me/201118586503?text=${text}`, '_blank');
+  showToast('✅ تم الإرسال','سيرد عليك الفريق قريباً');
+  ['cf-name','cf-phone','cf-msg'].forEach(id => { document.getElementById(id).value = ''; });
+};
+
+// ════════════════════════════════════════════════
+//  ADMIN LOGIN
+// ════════════════════════════════════════════════
+window.tryAdminLogin = function() {
+  const email = document.getElementById('adm-email').value;
+  const pw    = document.getElementById('adm-pw').value;
+  const ERR   = document.getElementById('admin-err');
+  if (email === 'kiwi' && pw === 'ah7mod') {
+    document.getElementById('admin-step1').style.display = 'none';
+    document.getElementById('admin-step2').style.display = 'block';
+    ERR.style.display = 'none';
+    showToast('📱 كود التجربة: 123456','2FA');
+  } else {
+    ERR.textContent = '❌ اسم المستخدم أو كلمة المرور غلط';
+    ERR.style.display = 'block';
+  }
+};
+
+window.verifyAdminOTP = function() {
+  const otp = ['ao1','ao2','ao3','ao4','ao5','ao6'].map(i=>document.getElementById(i).value).join('');
+  if (otp === '123456') {
+    STATE.adminLoggedIn = true;
+    closeModal('adminLoginModal');
+    showAdminApp();
+  } else {
+    document.getElementById('admin-err').textContent = '❌ الكود غلط';
+    document.getElementById('admin-err').style.display = 'block';
+  }
+};
+
+function showAdminApp() {
+  document.getElementById('mainApp').style.display  = 'none';
+  document.getElementById('adminApp').style.display = 'block';
+  loadAdminData();
+}
+
+window.exitAdmin = function() {
+  document.getElementById('adminApp').style.display = 'none';
+  document.getElementById('mainApp').style.display  = 'block';
+};
+
+window.adminLogout = function() {
+  STATE.adminLoggedIn = false;
+  document.getElementById('admin-step1').style.display = 'block';
+  document.getElementById('admin-step2').style.display = 'none';
+  ['ao1','ao2','ao3','ao4','ao5','ao6','adm-pw'].forEach(id=>{ const e=document.getElementById(id); if(e) e.value=''; });
+  exitAdmin();
+};
+
+// ════════════════════════════════════════════════
+//  ADMIN DATA
+// ════════════════════════════════════════════════
+async function loadAdminData() {
+  await Promise.all([loadAdminStats(), loadAdminBookings(), loadAdminEvents(), renderAdminTripsTable()]);
+}
+
+async function loadAdminStats() {
+  const [bkSnap, usSnap] = await Promise.all([
+    getDocs(collection(db, 'bookings')),
+    getDocs(collection(db, 'users')),
+  ]);
+  const bks = bkSnap.docs.map(d=>d.data());
+  const rev = bks.filter(b=>b.status==='confirmed').reduce((s,b)=>s+(b.totalPrice||0),0);
+  const pend = bks.filter(b=>b.status==='pending').length;
+  setSafe('a-rev', rev.toLocaleString());
+  setSafe('a-bk',  bks.length);
+  setSafe('a-us',  usSnap.size);
+  setSafe('a-tr',  STATE.trips.length);
+  setSafe('pending-badge', pend);
+  renderDashRecent(bks.slice(-4).reverse());
+  buildRevChart(bks.filter(b=>b.status==='confirmed'));
+}
+
+function renderDashRecent(bks) {
+  const el = document.getElementById('dash-recent');
+  if (!el) return;
+  el.innerHTML = bks.map(b=>`
+    <div style="padding:.65rem 0;border-bottom:1px solid var(--border);font-size:.82rem">
+      <div style="display:flex;justify-content:space-between">
+        <div><div style="font-weight:600">${b.userName||'—'}</div><div style="color:var(--muted);font-size:.72rem">${b.tripName||'—'}</div></div>
+        <div style="color:var(--primary);font-weight:700">${(b.totalPrice||0).toLocaleString()} EGP</div>
+      </div>
+    </div>`).join('') || '<p style="color:var(--muted);font-size:.82rem">لا يوجد حجوزات</p>';
+}
+
+async function loadAdminBookings(filter) {
+  const snap = await getDocs(collection(db, 'bookings'));
+  let bks = snap.docs.map(d=>({id:d.id,...d.data()}));
+  if (filter && filter !== 'all') bks = bks.filter(b=>b.status===filter);
+  const tbody = document.getElementById('bookings-tbl');
+  if (!tbody) return;
+  tbody.innerHTML = bks.map(b=>`
+    <tr>
+      <td style="font-size:.75rem;color:var(--muted)">${b.id.slice(0,8)}</td>
+      <td><div style="font-weight:600;font-size:.85rem">${b.userName||'—'}</div><div style="font-size:.72rem;color:var(--muted)">${b.userPhone||''}</div></td>
+      <td style="font-size:.83rem">${b.tripName||'—'}</td>
+      <td style="font-size:.78rem;color:var(--primary)">${b.travelDate||'—'}</td>
+      <td><strong style="color:var(--primary)">${(b.totalPrice||0).toLocaleString()} EGP</strong></td>
+      <td><div style="font-size:.8rem">${b.paymentMethod==='vfCash'?'🔴 فودافون كاش':b.paymentMethod==='instapay'?'🟣 انستا باي':b.paymentMethod==='fawry'?'🟡 فوري':'—'}</div><div style="font-size:.7rem;color:var(--muted)">${b.paymentProof||'لا يوجد إثبات'}</div></td>
+      <td><span class="sb ${b.status==='confirmed'?'sb-ok':b.status==='cancelled'?'sb-off':'sb-pend'}">${b.status==='confirmed'?'✅ مؤكد':b.status==='cancelled'?'❌ ملغي':'⏳ معلق'}</span></td>
+      <td><div class="act-btns">
+        ${b.status==='pending'?`
+          <div class="act-btn" style="border-color:rgba(var(--primary-rgb),.3);color:var(--primary)" onclick="updateBookingStatus('${b.id}','confirmed')">✓</div>
+          <div class="act-btn del" onclick="updateBookingStatus('${b.id}','cancelled')">✗</div>` : ''}
+      </div></td>
+    </tr>`).join('') || `<tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--muted)">لا يوجد حجوزات</td></tr>`;
+}
+
+window.loadBookings = loadAdminBookings;
+
+window.updateBookingStatus = async function(id, status) {
+  await updateDoc(doc(db, 'bookings', id), { status });
+  loadAdminBookings();
+  loadAdminStats();
+  showToast(status==='confirmed'?'✅ تم التأكيد':'❌ تم الإلغاء', id.slice(0,8));
+};
+
+function renderUsersTable(users) {
+  const tbody = document.getElementById('users-tbl');
+  const count = document.getElementById('users-count-admin');
+  if (count) count.textContent = users.length;
+  if (!tbody) return;
+  const tl = {gold:'🥇 ذهبي',silver:'🥈 فضي',bronze:'🥉 برونزي'};
+  tbody.innerHTML = users.map(u=>`
+    <tr>
+      <td><div style="display:flex;align-items:center;gap:.7rem">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--bg4);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0">
+          ${u.avatar?`<img src="${u.avatar}" style="width:100%;height:100%;object-fit:cover">`:`<span>${u.name?.charAt(0)||'🥝'}</span>`}
+        </div>
+        <div style="font-weight:600;font-size:.85rem">${u.name||'—'}</div>
+      </div></td>
+      <td style="font-size:.8rem;color:var(--muted)">${u.phone||'—'}</td>
+      <td style="font-size:.82rem">${u.age||'—'}</td>
+      <td style="font-size:.82rem">${u.city||'—'}</td>
+      <td style="color:var(--primary);font-weight:700">🪙 ${(u.coins||0).toLocaleString()}</td>
+      <td>${tl[u.tier||'bronze']}</td>
+      <td>${u.trips||0}</td>
+      <td style="font-size:.78rem;color:var(--muted)">${u.createdAt?.toDate?.()?.toLocaleDateString('ar-EG')||'—'}</td>
+    </tr>`).join('') || `<tr><td colspan="8" style="text-align:center;padding:2rem;color:var(--muted)">لا يوجد مستخدمين</td></tr>`;
+}
+
+window.filterUsers = function(q) {
+  document.querySelectorAll('#users-tbl tr').forEach(r => r.style.display = r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none');
+};
+
+// ── COINS ADMIN ──
+function renderCoinsLeaderboard(users) {
+  const tbody = document.getElementById('coins-leaderboard-tbl');
+  if (!tbody) return;
+  const tl = {gold:'🥇 ذهبي',silver:'🥈 فضي',bronze:'🥉 برونزي'};
+  tbody.innerHTML = users.map((u,i)=>`
+    <tr>
+      <td style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:${i===0?'gold':i===1?'silver':i===2?'#CD7F32':'var(--muted)'}">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</td>
+      <td><div style="display:flex;align-items:center;gap:.7rem">
+        <div style="width:30px;height:30px;border-radius:50%;background:var(--bg4);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0">
+          ${u.avatar?`<img src="${u.avatar}" style="width:100%;height:100%;object-fit:cover">`:`${u.name?.charAt(0)||'🥝'}`}
+        </div>
+        <div style="font-weight:600;font-size:.85rem">${u.name||'—'}</div>
+      </div></td>
+      <td style="color:var(--primary);font-weight:800;font-size:1rem">🪙 ${(u.coins||0).toLocaleString()}</td>
+      <td>${tl[u.tier||'bronze']}</td>
+      <td>${u.trips||0}</td>
+    </tr>`).join('');
+}
+
+function populateCoinsUserSelect(users) {
+  const sel = document.getElementById('coins-user-select');
+  if (!sel) return;
+  sel.innerHTML = '<option value="">-- اختار مستخدم --</option>' +
+    users.map(u=>`<option value="${u.id}">${u.name||u.phone||u.id} (🪙 ${u.coins||0})</option>`).join('');
+}
+
+window.giveCoins = async function() {
+  const uid    = document.getElementById('coins-user-select').value;
+  const amount = parseInt(document.getElementById('coins-amount-input').value);
+  if (!uid || isNaN(amount)) { showToast('⚠️','اختار مستخدم وأدخل الكوينات'); return; }
+  const userRef  = doc(db, 'users', uid);
+  const userSnap = await getDoc(userRef);
+  if (!userSnap.exists()) return;
+  const cur = userSnap.data();
+  const newCoins = Math.max(0, (cur.coins||0) + amount);
+  const newTier  = newCoins>=5000?'gold':newCoins>=1000?'silver':'bronze';
+  await updateDoc(userRef, { coins: newCoins, tier: newTier });
+  await addDoc(collection(db, 'users', uid, 'coinHistory'), {
+    type: amount>0?'earn':'spend', amount,
+    reason: `تعديل يدوي من الأدمن`,
+    balance: newCoins, createdAt: serverTimestamp(),
+  });
+  showToast(`${amount>0?'✅ أضفت':'⚠️ خصمت'} ${Math.abs(amount)} كوين`, `لـ ${cur.name||uid}`);
+  document.getElementById('coins-amount-input').value = '';
+};
+
+// ── TRIPS ADMIN ──
+function renderAdminTripsTable() {
+  const tbody = document.getElementById('trips-tbl');
+  const count = document.getElementById('trips-count-admin');
+  if (count) count.textContent = STATE.trips.length;
+  if (!tbody) return;
+  tbody.innerHTML = STATE.trips.map(t=>`
+    <tr>
+      <td><div style="display:flex;align-items:center;gap:.8rem">
+        <div class="trip-thumb" style="background:${t.color||'var(--primary-dark)'}">
+          ${t.img?`<img src="${t.img}" alt="">`:`<span>${t.emoji||'✈️'}</span>`}
+        </div>
+        <div><div style="font-weight:700;font-size:.85rem">${t.name_ar||''}</div>
+          ${t.badge?`<span style="background:rgba(255,107,107,.15);color:var(--coral);padding:.1rem .5rem;border-radius:6px;font-size:.68rem">${t.badge}</span>`:''}
+        </div>
+      </div></td>
+      <td style="font-size:.8rem;color:var(--muted)">📍 ${t.location_ar||''}</td>
+      <td>${t.days||0} أيام</td>
+      <td><strong style="color:var(--primary)">${(t.price||0).toLocaleString()}</strong>${t.old_price?`<br><del style="font-size:.72rem;color:var(--muted)">${t.old_price.toLocaleString()}</del>`:''}</td>
+      <td><span style="color:var(--primary)">🪙 +${t.coins_earn||0}</span></td>
+      <td><span class="sb sb-ok">🟢 نشطة</span></td>
+      <td><div class="act-btns">
+        <div class="act-btn" onclick="editTrip('${t.id}')">✏️</div>
+        <div class="act-btn del" onclick="deleteTrip('${t.id}')">🗑️</div>
+      </div></td>
+    </tr>`).join('') || `<tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--muted)">لا يوجد رحلات — ضيف رحلة جديدة!</td></tr>`;
+}
+
+window.filterAdminTrips = function(q) {
+  document.querySelectorAll('#trips-tbl tr').forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none');
+};
+
+window.openTripForm = function(id) {
+  STATE.editingTripId = id || null;
+  document.getElementById('trip-form-title').textContent = id ? '✏️ تعديل الرحلة' : '➕ رحلة جديدة';
+  if (id) {
+    const t = STATE.trips.find(x=>x.id===id);
+    ['name_ar','name_en','location_ar','location_en','badge','emoji','departure','transport','video','hotel','hotel_loc'].forEach(k=>{
+      const el=document.getElementById('tf-'+k.replace('_','-')); if(el) el.value=t[k]||'';
+    });
+    setSafe2('tf-route', (t.route||[]).join(', '));
+    setSafe2('tf-stops', (t.stops||[]).join(', '));
+    setSafe2('tf-price', t.price||'');
+    setSafe2('tf-old-price', t.old_price||'');
+    setSafe2('tf-days', t.days||'');
+    setSafe2('tf-coins', t.coins_earn||'');
+    setSafe2('tf-min', t.min_people||2);
+    setSafe2('tf-max', t.max_people||10);
+    setSafe2('tf-color', t.color||STATE.selectedColor);
+    if (t.img) { setSafe2('tf-img',t.img); const prev=document.getElementById('trip-img-preview'); if(prev){prev.src=t.img;prev.style.display='block';} }
+    else { setSafe2('tf-img',''); const prev=document.getElementById('trip-img-preview'); if(prev) prev.style.display='none'; }
+  } else {
+    ['tf-name-ar','tf-name-en','tf-loc-ar','tf-loc-en','tf-price','tf-old-price','tf-days','tf-coins','tf-badge','tf-dep','tf-transport','tf-video','tf-hotel','tf-hotel-loc','tf-route','tf-stops'].forEach(id=>{setSafe2(id,'');});
+    setSafe2('tf-emoji','✈️'); setSafe2('tf-min',2); setSafe2('tf-max',10);
+    setSafe2('tf-color',STATE.selectedColor);
+    setSafe2('tf-img','');
+    const prev=document.getElementById('trip-img-preview'); if(prev) prev.style.display='none';
+    const lbl=document.getElementById('upload-lbl'); if(lbl) lbl.textContent='اضغط لرفع صورة';
+  }
+  openModal('tripFormModal');
+};
+
+window.editTrip = window.openTripForm;
+
+window.deleteTrip = async function(id) {
+  if (!confirm('هتحذف الرحلة دي من Firebase؟')) return;
+  await deleteDoc(doc(db, 'trips', id));
+  showToast('🗑️ تم الحذف','');
+};
+
+window.handleTripImg = function(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    setSafe2('tf-img', ev.target.result);
+    const prev = document.getElementById('trip-img-preview');
+    if (prev) { prev.src=ev.target.result; prev.style.display='block'; }
+    const lbl = document.getElementById('upload-lbl');
+    if (lbl) lbl.textContent = '✅ تم رفع الصورة';
+  };
+  reader.readAsDataURL(file);
+};
+
+window.saveTrip = async function() {
+  const name  = document.getElementById('tf-name-ar')?.value;
+  const price = parseInt(document.getElementById('tf-price')?.value);
+  if (!name || !price) { showToast('⚠️','الاسم والسعر مطلوبان'); return; }
+
+  const tripData = {
+    name_ar:    name,
+    name_en:    document.getElementById('tf-name-en')?.value || name,
+    location_ar:document.getElementById('tf-loc-ar')?.value || '',
+    location_en:document.getElementById('tf-loc-en')?.value || '',
+    price,
+    old_price:  parseInt(document.getElementById('tf-old-price')?.value)||null,
+    days:       parseInt(document.getElementById('tf-days')?.value)||3,
+    coins_earn: parseInt(document.getElementById('tf-coins')?.value)||Math.floor(price/10),
+    min_people: parseInt(document.getElementById('tf-min')?.value)||2,
+    max_people: parseInt(document.getElementById('tf-max')?.value)||10,
+    badge:      document.getElementById('tf-badge')?.value||null,
+    emoji:      document.getElementById('tf-emoji')?.value||'✈️',
+    departure:  document.getElementById('tf-dep')?.value||'',
+    transport:  document.getElementById('tf-transport')?.value||'',
+    video:      document.getElementById('tf-video')?.value||'',
+    hotel:      document.getElementById('tf-hotel')?.value||'',
+    hotel_loc:  document.getElementById('tf-hotel-loc')?.value||'',
+    route:      (document.getElementById('tf-route')?.value||'').split(',').map(s=>s.trim()).filter(Boolean),
+    stops:      (document.getElementById('tf-stops')?.value||'').split(',').map(s=>s.trim()).filter(Boolean),
+    color:      document.getElementById('tf-color')?.value||STATE.selectedColor,
+    img:        document.getElementById('tf-img')?.value||'',
+    timeline:   [], includes: {yes:[],no:[]},
+    active:     true,
+    createdAt:  STATE.editingTripId ? (STATE.trips.find(t=>t.id===STATE.editingTripId)?.createdAt||serverTimestamp()) : serverTimestamp(),
+  };
+
+  if (STATE.editingTripId) {
+    await updateDoc(doc(db, 'trips', STATE.editingTripId), tripData);
+    showToast('✅ تم التعديل — ظهر على الموقع فوراً', tripData.name_ar);
+  } else {
+    await addDoc(collection(db, 'trips'), tripData);
+    showToast('✅ رحلة جديدة على Firebase — ظهرت فوراً!', tripData.name_ar);
+  }
+  closeModal('tripFormModal');
+};
+
+// ── EVENTS ──
+async function loadAdminEvents() {
+  const snap = await getDocs(collection(db, 'events'));
+  const events = snap.docs.map(d=>({id:d.id,...d.data()}));
+  renderAdminEvents(events);
+}
+
+function renderAdminEvents(events) {
+  const grid = document.getElementById('events-grid-admin');
+  if (!grid) return;
+  const TYPE_C={offer:'var(--primary)',event:'var(--teal)',news:'var(--coral)',promo:'gold'};
+  grid.innerHTML = events.map((e,i)=>`
+    <div class="event-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem">
+        <span style="font-size:.78rem;color:${TYPE_C[e.type]||'var(--primary)'};font-weight:700">${{offer:'🎁 عرض',event:'📅 فعالية',news:'📢 خبر',promo:'📣 إعلان'}[e.type]||e.type}</span>
+        <span style="font-size:.72rem;font-weight:700;padding:.2rem .6rem;border-radius:50px;background:${e.active?'rgba(var(--primary-rgb),.1)':'rgba(107,122,153,.1)'};color:${e.active?'var(--primary)':'var(--muted)'}">${e.active?'نشط':'متوقف'}</span>
+      </div>
+      <div style="font-size:1rem;font-weight:700;margin-bottom:.4rem">${e.title||''}</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-bottom:.6rem">${e.description||''}</div>
+      ${e.code?`<div style="font-size:.8rem;margin-bottom:.3rem">🏷️ <strong style="color:var(--primary)">${e.code}</strong>${e.discount?` — ${e.discount}%`:''}</div>`:''}
+      <div style="display:flex;gap:.4rem;margin-top:.8rem">
+        <div class="act-btn" onclick="editEvent('${e.id}')">✏️</div>
+        <div class="act-btn del" onclick="deleteEvent('${e.id}')">🗑️</div>
+      </div>
+    </div>`).join('') || '<div style="text-align:center;padding:2rem;color:var(--muted);grid-column:1/-1">لا يوجد فعاليات</div>';
+}
+
+window.openEventForm = function() {
+  STATE.editingEventId = null;
+  ['ef-title','ef-desc','ef-code','ef-discount'].forEach(id=>{setSafe2(id,'');});
+  ['ef-start','ef-end'].forEach(id=>{setSafe2(id,'');});
+  selEventType('offer', document.querySelector('[onclick*="selEventType(\'offer"]'));
+  openModal('eventFormModal');
+};
+
+window.editEvent = async function(id) {
+  STATE.editingEventId = id;
+  const snap = await getDoc(doc(db,'events',id));
+  if(!snap.exists()) return;
+  const e = snap.data();
+  setSafe2('ef-title',e.title||''); setSafe2('ef-desc',e.description||'');
+  setSafe2('ef-code',e.code||''); setSafe2('ef-discount',e.discount||'');
+  setSafe2('ef-start',e.start||''); setSafe2('ef-end',e.end||'');
+  selEventType(e.type||'offer', null);
+  openModal('eventFormModal');
+};
+
+window.saveEvent = async function() {
+  const title = document.getElementById('ef-title')?.value;
+  if (!title) { showToast('⚠️','العنوان مطلوب'); return; }
+  const data = {
+    title, description: document.getElementById('ef-desc')?.value||'',
+    type: document.getElementById('ef-type')?.value||'offer',
+    code: document.getElementById('ef-code')?.value?.toUpperCase()||'',
+    discount: parseInt(document.getElementById('ef-discount')?.value)||0,
+    start: document.getElementById('ef-start')?.value||'',
+    end:   document.getElementById('ef-end')?.value||'',
+    active: true,
+  };
+  if (STATE.editingEventId) {
+    await updateDoc(doc(db,'events',STATE.editingEventId), data);
+    showToast('✅ تم التعديل', title);
+  } else {
+    await addDoc(collection(db,'events'), { ...data, createdAt: serverTimestamp() });
+    showToast('✅ تم الإضافة — ظهر فوراً', title);
+  }
+  closeModal('eventFormModal');
+  loadAdminEvents();
+};
+
+window.deleteEvent = async function(id) {
+  if (!confirm('هتحذف الفعالية دي؟')) return;
+  await deleteDoc(doc(db,'events',id));
+  loadAdminEvents();
+  showToast('🗑️ تم الحذف','');
+};
+
+window.selEventType = function(type, el) {
+  document.getElementById('ef-type').value = type;
+  document.querySelectorAll('[onclick*="selEventType"]').forEach(b=>b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  STATE.selectedEventType = type;
+};
+
+// ── TEAM ──
+function renderTeamAdmin(members) {
+  const list = document.getElementById('team-admin-list');
+  if (!list) return;
+  list.innerHTML = members.map(m=>`
+    <div style="display:flex;align-items:center;gap:1rem;background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.2rem;margin-bottom:.8rem">
+      <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--primary-dark),var(--primary));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">${m.emoji||'👨‍💼'}</div>
+      <div style="flex:1">
+        <div style="font-weight:700;font-size:.95rem">${m.name||''}</div>
+        <div style="font-size:.75rem;color:var(--primary)">${m.role||''}</div>
+        <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">${m.phone?`📱 ${m.phone}`:''} ${m.email?`✉️ ${m.email}`:''}</div>
+      </div>
+      <div class="act-btns">
+        <div class="act-btn del" onclick="deleteTeamMember('${m.id}')">🗑️</div>
+      </div>
+    </div>`).join('') || '<p style="color:var(--muted);text-align:center;padding:2rem">لا يوجد أعضاء</p>';
+}
+
+window.openTeamForm = function() {
+  STATE.editingTeamId = null;
+  ['tm-name','tm-role','tm-phone','tm-email'].forEach(id=>{setSafe2(id,'');});
+  setSafe2('tm-emoji','👨‍💼');
+  openModal('teamFormModal');
+};
+
+window.saveTeamMember = async function() {
+  const name = document.getElementById('tm-name')?.value;
+  if (!name) { showToast('⚠️','الاسم مطلوب'); return; }
+  const data = {
+    name,
+    role:  document.getElementById('tm-role')?.value||'',
+    phone: document.getElementById('tm-phone')?.value||'',
+    email: document.getElementById('tm-email')?.value||'',
+    emoji: document.getElementById('tm-emoji')?.value||'👨‍💼',
+  };
+  await addDoc(collection(db,'team'), { ...data, createdAt: serverTimestamp() });
+  showToast('✅ تم الإضافة — ظهر على الموقع فوراً', name);
+  closeModal('teamFormModal');
+};
+
+window.deleteTeamMember = async function(id) {
+  if (!confirm('هتحذف العضو ده؟')) return;
+  await deleteDoc(doc(db,'team',id));
+  showToast('🗑️ تم الحذف','');
+};
+
+window.saveSettings = async function() {
+  const data = {
+    siteName: document.getElementById('set-site-name')?.value || '',
+    email: document.getElementById('set-email')?.value || '',
+    phone: document.getElementById('set-phone')?.value || '',
+    vfCash: document.getElementById('set-vf-cash')?.value || '',
+    instapay: document.getElementById('set-instapay')?.value || '',
+    fawry: document.getElementById('set-fawry')?.value || '',
+  };
+  try {
+    await updateDoc(doc(db, 'settings', 'global'), data);
+  } catch(e) {
+    await setDoc(doc(db, 'settings', 'global'), data);
+  }
+  showToast('✅ تم الحفظ','تم تحديث الإعدادات');
+};
+
+function listenSettings() {
+  onSnapshot(doc(db, 'settings', 'global'), (sDoc) => {
+    if (sDoc.exists()) {
+      const s = sDoc.data();
+      STATE.siteSettings = s;
+      document.querySelectorAll('.site-email-display').forEach(e => { if(e.tagName==='A') e.href=`mailto:${s.email}`; else e.textContent=s.email; });
+      document.querySelectorAll('.site-phone-display').forEach(e => { if(e.tagName==='A') e.href=`https://wa.me/${s.phone?.replace(/\D/g,'')}`; else e.textContent=s.phone; });
+      setSafe2('set-site-name', s.siteName || '');
+      setSafe2('set-email', s.email || '');
+      setSafe2('set-phone', s.phone || '');
+      setSafe2('set-vf-cash', s.vfCash || '');
+      setSafe2('set-instapay', s.instapay || '');
+      setSafe2('set-fawry', s.fawry || '');
+      if(typeof showPayInfo === 'function') showPayInfo();
+    }
+  });
+}
+
+window.showPayInfo = function() {
+  const method = document.querySelector('input[name="pay_method"]:checked')?.value;
+  const s = STATE.siteSettings || {};
+  let txt = '—';
+  if(method==='vfCash') txt = `فودافون كاش رقم: <span style="color:var(--primary);font-size:1.1rem;margin-right:.4rem">${s.vfCash||'غير محدد'}</span>`;
+  else if(method==='instapay') txt = `انستا باي (InstaPay): <span style="color:var(--primary);font-size:1.1rem;margin-right:.4rem">${s.instapay||'غير محدد'}</span>`;
+  else if(method==='fawry') txt = `فوري رقم / كود: <span style="color:var(--primary);font-size:1.1rem;margin-right:.4rem">${s.fawry||'غير محدد'}</span>`;
+  const el = document.getElementById('pay-inst-txt');
+  if(el) el.innerHTML = txt;
+};
+
+// ════════════════════════════════════════════════
+//  REVENUE CHART
+// ════════════════════════════════════════════════
+function buildRevChart(bks) {
+  if (!bks) return;
+  const chart=document.getElementById('rev-chart');
+  const labels=document.getElementById('rev-labels');
+  if(!chart) return;
+  
+  const monthly = new Array(12).fill(0);
+  bks.forEach(b => {
+    if (b.createdAt) {
+      const d = b.createdAt.toDate ? b.createdAt.toDate() : new Date(b.createdAt);
+      if (d.getFullYear() === new Date().getFullYear()) {
+        monthly[d.getMonth()] += (b.totalPrice || 0);
+      }
+    }
+  });
+  
+  const max = Math.max(...monthly, 1);
+  const months=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+  
+  chart.innerHTML=monthly.map((v,i)=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center"><div class="mbar ${i===new Date().getMonth()?'hi':''}" style="height:${(v/max)*85}px;width:100%" title="${v.toLocaleString()} EGP"></div></div>`).join('');
+  labels.innerHTML=months.map(m=>`<div style="flex:1;font-size:.58rem;color:var(--muted);text-align:center">${m.substring(0,3)}</div>`).join('');
+}
+
+// ════════════════════════════════════════════════
+//  ADMIN PAGE NAV
+// ════════════════════════════════════════════════
+window.adminPage = function(name, el) {
+  document.querySelectorAll('.admin-page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('ap-'+name).classList.add('active');
+  if(el) el.classList.add('active');
+  const T={dashboard:'📊 لوحة التحكم',trips:'✈️ الرحلات',bookings:'📋 الحجوزات',users:'👥 المستخدمين',['coins-admin']:'🪙 الكوينات',events:'🎁 الفعاليات',team:'📞 الفريق',['settings-admin']:'⚙️ الإعدادات',['payment-admin']:'💳 بوابات الدفع'};
+  setSafe('admin-page-title', T[name]||name);
+  if (name==='bookings') loadAdminBookings();
+  if (name==='events')   loadAdminEvents();
+};
+
+// ════════════════════════════════════════════════
+//  THEME & LANG — sync Firebase STATE only
+//  The actual DOM changes are in the inline script
+// ════════════════════════════════════════════════
+// Hook into inline setTheme to also update Firebase STATE
+const _origSetTheme = window.setTheme;
+window.setTheme = function(name, el) {
+  if(_origSetTheme) _origSetTheme(name, el);
+  STATE.theme = name;
+};
+const _origSetLang = window.setLang;
+window.setLang = function(lang, el) {
+  if(_origSetLang) _origSetLang(lang, el);
+  STATE.lang = lang;
+};
+
+// ════════════════════════════════════════════════
+//  SHARED HELPERS
+// ════════════════════════════════════════════════
+window.openModal  = function(id) { document.getElementById(id)?.classList.add('open'); };
+window.closeModal = function(id) { document.getElementById(id)?.classList.remove('open'); };
+
+document.querySelectorAll('.overlay').forEach(ov => {
+  ov.addEventListener('click', e => { if(e.target===ov) ov.classList.remove('open'); });
+});
+
+window.otpMove = function(el, nextId) {
+  if (el.value && nextId) document.getElementById(nextId)?.focus();
+  if (!nextId) {
+    // Last OTP digit — auto verify if in OTP step
+    const wrapper = el.closest('#login-otp-step, #admin-step2');
+    if (wrapper?.id === 'login-otp-step') verifyOTP();
+    if (wrapper?.id === 'admin-step2') verifyAdminOTP();
+  }
+};
+
+let toastTimer;
+window.showToast = function(msg, sub) {
+  const t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  document.getElementById('toast-sub').textContent=sub||'';
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),3500);
+};
+
+function setSafe(id, val) { const e=document.getElementById(id); if(e) e.textContent=val; }
+function setSafe2(id, val) { const e=document.getElementById(id); if(e) e.value=val; }
+
+function startAdminClock() {
+  setInterval(()=>{ const el=document.getElementById('admin-clock'); if(el) el.textContent=new Date().toLocaleTimeString('ar-EG'); },1000);
+}
+
+function initSearchTabs() {
+  document.querySelectorAll('.stab').forEach(tab=>tab.addEventListener('click',()=>{
+    document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+  }));
+}
+
+function buildColorGrid() {
+  const colors=[
+    {bg:'linear-gradient(135deg,#2E7D32,#8BC34A)'},{bg:'linear-gradient(135deg,#006994,#00B4D8)'},
+    {bg:'linear-gradient(135deg,#C9A84C,#8B6914)'},{bg:'linear-gradient(135deg,#7C3AED,#4F1D96)'},
+    {bg:'linear-gradient(135deg,#FF6B35,#D4381A)'},{bg:'linear-gradient(135deg,#4ECDC4,#1A535C)'},
+    {bg:'linear-gradient(135deg,#E91E8C,#A01260)'},{bg:'linear-gradient(135deg,#1565C0,#0D47A1)'},
+    {bg:'linear-gradient(135deg,#F57F17,#E65100)'},{bg:'linear-gradient(135deg,#37474F,#263238)'},
+    {bg:'linear-gradient(135deg,#880E4F,#4A148C)'},{bg:'linear-gradient(135deg,#004D40,#00695C)'},
+  ];
+  const grid=document.getElementById('color-grid');
+  if(!grid) return;
+  grid.innerHTML=colors.map((c,i)=>`<div class="color-opt ${i===0?'selected':''}" style="background:${c.bg}" onclick="selColor(this,'${c.bg}')"></div>`).join('');
+  document.getElementById('tf-color').value=colors[0].bg;
+  STATE.selectedColor=colors[0].bg;
+}
+
+window.selColor = function(el,val) {
+  document.querySelectorAll('.color-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('tf-color').value=val;
+  STATE.selectedColor=val;
+};
+
+// hash-based admin access
+if(window.location.hash==='#admin') {
+  setTimeout(()=>window.openModal('adminLoginModal'), 600);
+}
+</script>
+</body>
+</html>
